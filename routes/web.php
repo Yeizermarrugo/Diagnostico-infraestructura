@@ -1,24 +1,26 @@
 <?php
 
-use App\Http\Controllers\InscripcionController;
+use App\Http\Controllers\PostulacionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('inscripcion');
-});
-Route::post('/inscripcion', [InscripcionController::class, 'store'])->name('inscripcion.store');
-Route::get('/inscripciones/search', [InscripcionController::class, 'search'])->name('inscripciones.search');
-Route::get('/inscripcion-total', [InscripcionController::class, 'total'])->name('inscripciones.total');
-Route::get('/inscripciones/check-documento', [InscripcionController::class, 'checkDocumento'])->name('inscripciones.check-documento');
+    return view('postulacion');
+})->name('postulacion.form');
+
+Route::post('/postulacion', [PostulacionController::class, 'store'])->name('postulacion.store');
+Route::get('/postulaciones/check-documento', [PostulacionController::class, 'checkDocumento'])->name('postulaciones.check-documento');
+
 Route::get('/registro-pendiente', function () {
     return view('auth.pending-activation');
 })->name('registro.pendiente');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [InscripcionController::class, 'index'])->name('dashboard');
-    Route::get('/inscripciones/{inscripcion}/certificado', [InscripcionController::class, 'descargarCertificado'])->name('inscripciones.certificado');
-    Route::get('/inscripciones/chart-data', [InscripcionController::class, 'chartData'])->name('inscripciones.chart-data');
+    Route::get('/dashboard', [PostulacionController::class, 'index'])->name('dashboard');
+    Route::get('/postulaciones/{postulacion}/carta', [PostulacionController::class, 'descargarCarta'])->name('postulaciones.carta');
+    Route::get('/postulaciones/chart-data', [PostulacionController::class, 'chartData'])->name('postulaciones.chart-data');
+    Route::get('/postulaciones/search', [PostulacionController::class, 'search'])->name('postulaciones.search');
+    Route::get('/postulaciones/export/excel', [PostulacionController::class, 'exportExcel'])->name('postulaciones.export.excel');
 });
 
 Route::middleware('auth')->group(function () {
@@ -26,8 +28,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
-Route::get('/inscripciones/export/excel', [InscripcionController::class, 'exportExcel'])->name('inscripciones.export.excel');
 
 require __DIR__ . '/auth.php';

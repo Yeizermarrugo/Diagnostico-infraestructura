@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "mintic-unicartagena/instrumento-ia-estado",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Instrumento de Evaluación y Selección de Entidades Beneficiarias — Proyecto IA para el Estado.",
     "keywords": [
         "laravel",
         "framework"
