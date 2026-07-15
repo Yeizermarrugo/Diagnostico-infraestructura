@@ -79,6 +79,27 @@
                 enctype="multipart/form-data" class="needs-validation visible" novalidate>
                 @csrf
 
+                <div class="annex-download-card">
+                    <div class="annex-download-icon" aria-hidden="true">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <div class="annex-download-content">
+                        <span class="annex-download-kicker">Documento requerido</span>
+                        <h5>Anexo. Carta de manifestación de interés y compromiso institucional</h5>
+                        <p>
+                            Antes de continuar con el registro, descargue el anexo oficial, diligéncielo con la
+                            información de la entidad y gestione la firma de la autoridad competente o del funcionario
+                            delegado. Más adelante deberá cargar este documento en formato PDF, debidamente diligenciado
+                            y firmado, para completar la postulación.
+                        </p>
+                        <a href="{{ asset('Anexo - Carta de compromiso Convocatoria - Selección Proyecto IA para el Estado - 2026.docx') }}"
+                            class="annex-download-button" download>
+                            <i class="fas fa-download"></i>
+                            Descargar anexo
+                        </a>
+                    </div>
+                </div>
+
                 <div class="steps-progress" id="steps-progress">
                     <div class="step-connector"></div>
                     <div class="step-item active" data-step="1">

@@ -108,7 +108,7 @@ return [
                     'numero' => 1,
                     'texto' => '¿En qué categoría territorial se ubica la entidad según la Ley 617 de 2000?',
                     'opciones' => [
-                        4 => 'Categoría 4, 5 o 6 (foco prioritario)',
+                        4 => 'Categoría 4, 5 o 6',
                         3 => 'Categoría 2 o 3',
                         2 => 'Especial o 1',
                         1 => 'No sabe / no responde',
