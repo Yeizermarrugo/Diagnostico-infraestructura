@@ -17,7 +17,6 @@ Route::get('/registro-pendiente', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [PostulacionController::class, 'index'])->name('dashboard');
-    Route::get('/postulaciones/{postulacion}/carta', [PostulacionController::class, 'descargarCarta'])->name('postulaciones.carta');
     Route::get('/postulaciones/chart-data', [PostulacionController::class, 'chartData'])->name('postulaciones.chart-data');
     Route::get('/postulaciones/search', [PostulacionController::class, 'search'])->name('postulaciones.search');
     Route::get('/postulaciones/export/excel', [PostulacionController::class, 'exportExcel'])->name('postulaciones.export.excel');

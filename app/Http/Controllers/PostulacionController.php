@@ -6,13 +6,11 @@ use App\Exports\PostulacionesExport;
 use App\Http\Requests\StorePostulacionRequest;
 use App\Mail\PostulacionRecibida;
 use App\Models\Postulacion;
-use App\Models\PostulacionEquipoMiembro;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PostulacionController extends Controller
@@ -77,10 +75,9 @@ class PostulacionController extends Controller
 
         $stats = [
             'total' => Postulacion::count(),
-            'con_carta' => Postulacion::whereNotNull('carta_compromiso_path')->count(),
             'promedio_puntaje' => (float) Postulacion::avg('puntaje_total'),
             'hoy' => Postulacion::whereDate('created_at', today())->count(),
-            'entidades_prioritarias' => Postulacion::where('p19_categoria_territorial', 4)->count(),
+            'entidades_prioritarias' => Postulacion::whereIn('categoria_territorial', ['Categoría 4', 'Categoría 5', 'Categoría 6'])->count(),
             'entidades_distintas' => Postulacion::distinct('nombre_entidad')->count('nombre_entidad'),
         ];
 
@@ -117,10 +114,10 @@ class PostulacionController extends Controller
 
         $histogramaPuntaje = Postulacion::selectRaw(
             "CASE
-                WHEN puntaje_total <= 21 THEN '0-21'
-                WHEN puntaje_total <= 42 THEN '22-42'
-                WHEN puntaje_total <= 63 THEN '43-63'
-                ELSE '64-84'
+                WHEN puntaje_total <= 47 THEN '0-47'
+                WHEN puntaje_total <= 95 THEN '48-95'
+                WHEN puntaje_total <= 142 THEN '96-142'
+                ELSE '143-190'
             END as rango, COUNT(*) as total"
         )
             ->groupBy('rango')
@@ -143,22 +140,11 @@ class PostulacionController extends Controller
         ]);
     }
 
-    public function descargarCarta(Postulacion $postulacion)
-    {
-        if (!$postulacion->carta_compromiso_path || !Storage::disk('public')->exists($postulacion->carta_compromiso_path)) {
-            abort(404, 'Carta de compromiso no encontrada.');
-        }
-
-        return Storage::disk('public')->download(
-            $postulacion->carta_compromiso_path,
-            'carta-compromiso-' . $postulacion->numero_documento . '.pdf'
-        );
-    }
-
     public function checkDocumento(Request $request)
     {
         $numero = preg_replace('/[^0-9]/', '', $request->query('numero_documento', ''));
         $entidad = trim((string) $request->query('nombre_entidad', ''));
+        $correo = trim((string) $request->query('correo_institucional', ''));
 
         $existe = false;
 
@@ -168,6 +154,10 @@ class PostulacionController extends Controller
 
         if (!$existe && $entidad !== '') {
             $existe = Postulacion::where('nombre_entidad', $entidad)->exists();
+        }
+
+        if (!$existe && $correo !== '') {
+            $existe = Postulacion::where('correo_institucional', $correo)->exists();
         }
 
         return response()->json(['exists' => $existe]);
@@ -187,45 +177,22 @@ class PostulacionController extends Controller
     public function store(StorePostulacionRequest $request)
     {
         $datos = $request->validated();
-        $equipo = $datos['equipo'];
-        unset($datos['equipo'], $datos['carta_compromiso']);
 
         $duplicada = Postulacion::where('nombre_entidad', $datos['nombre_entidad'])
             ->orWhere('numero_documento', $datos['numero_documento'])
+            ->orWhere('correo_institucional', $datos['correo_institucional'])
             ->first();
 
         if ($duplicada) {
             return redirect()->back()
                 ->withInput()
                 ->withErrors([
-                    'nombre_entidad' => 'Ya existe una postulación registrada para esta entidad o este número de documento.',
+                    'nombre_entidad' => 'Ya existe una postulación registrada para esta entidad, este número de documento o este correo electrónico.',
                 ]);
         }
 
         try {
-            $postulacion = DB::transaction(function () use ($request, $datos, $equipo) {
-                $datos['carta_compromiso_path'] = $request->file('carta_compromiso')->store('cartas_compromiso', 'public');
-
-                $postulacion = Postulacion::create($datos);
-
-                foreach (array_values($equipo) as $index => $miembro) {
-                    if (!filled($miembro['nombre_completo'] ?? null)) {
-                        continue;
-                    }
-
-                    PostulacionEquipoMiembro::create([
-                        'postulacion_id' => $postulacion->id,
-                        'orden' => $index + 1,
-                        'nombre_completo' => $miembro['nombre_completo'],
-                        'cargo' => $miembro['cargo'],
-                        'dependencia' => $miembro['dependencia'],
-                        'correo_institucional' => strtolower(trim($miembro['correo_institucional'])),
-                        'telefono' => $miembro['telefono'],
-                    ]);
-                }
-
-                return $postulacion;
-            });
+            $postulacion = DB::transaction(fn () => Postulacion::create($datos));
         } catch (\Exception $e) {
             Log::error('Error al guardar postulación: ' . $e->getMessage());
             Log::error($e->getTraceAsString());
@@ -238,14 +205,14 @@ class PostulacionController extends Controller
             Log::error('Error al enviar correo de confirmación de postulación: ' . $e->getMessage());
         }
 
-        return redirect('/')->with('success', 'Gracias por diligenciar el Formulario de Información Complementaria para la Selección de Entidades Beneficiarias del Proyecto IA para el Estado. La información registrada será revisada por el equipo del proyecto como parte del proceso de evaluación y selección. Recuerde que el diligenciamiento de este formulario no implica la selección automática de la entidad como beneficiaria. Una vez finalizada la etapa de revisión, se informarán los resultados y pasos a seguir a través de los canales oficiales del proyecto.');
+        return redirect('/')->with('success', 'Gracias por diligenciar el formulario Instrumento Autodiagnóstico Integrado del Proyecto IA para el Estado. La información registrada será revisada por el equipo del proyecto como parte del proceso de evaluación y selección. Recuerde que el diligenciamiento de este formulario no implica la selección automática de la entidad como beneficiaria. Una vez finalizada la etapa de revisión, se informarán los resultados y pasos a seguir a través de los canales oficiales del proyecto.');
     }
 
     public function exportExcel(Request $request)
     {
         ini_set('memory_limit', '512M');
 
-        $query = $this->applyFilters(Postulacion::with('equipoMiembros'), $request);
+        $query = $this->applyFilters(Postulacion::query(), $request);
 
         $postulaciones = $query->orderBy('created_at', 'desc')->get();
         $fecha = now()->format('Ymd_His');

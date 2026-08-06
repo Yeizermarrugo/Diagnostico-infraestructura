@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instrumento IA Estado 2026 | Dashboard</title>
+    <title>Autodiagnóstico Integrado | Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" type="image/x-icon" href="{{ asset('img/escudo.png') }}">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700&family=syne:600,700,800&family=plus-jakarta-sans:400,500,600,700,800" rel="stylesheet" />
@@ -17,7 +17,7 @@
     <aside class="dash-sidebar">
         <div class="dash-sidebar-logo">
             <img src="{{ asset('img/escudo.png') }}" alt="Logo" class="dash-sidebar-logo-img">
-            <span class="dash-sidebar-logo-text">Instrumento IA</span>
+            <span class="dash-sidebar-logo-text">Autodiagnóstico Integrado</span>
         </div>
         <nav class="dash-sidebar-nav">
             <a href="{{ route('dashboard') }}" class="dash-nav-item dash-nav-active">
@@ -65,17 +65,10 @@
                 </div>
             </div>
             <div class="dash-stat-card">
-                <div class="dash-stat-icon dash-stat-icon-green"><i class="fa fa-file-circle-check"></i></div>
-                <div class="dash-stat-info">
-                    <span class="dash-stat-value">{{ $stats['con_carta'] }}</span>
-                    <span class="dash-stat-label">Con carta de compromiso</span>
-                </div>
-            </div>
-            <div class="dash-stat-card">
                 <div class="dash-stat-icon dash-stat-icon-purple"><i class="fa fa-star-half-stroke"></i></div>
                 <div class="dash-stat-info">
                     <span class="dash-stat-value">{{ number_format($stats['promedio_puntaje'], 1) }}</span>
-                    <span class="dash-stat-label">Puntaje promedio (máx. 84)</span>
+                    <span class="dash-stat-label">Puntaje promedio (máx. 190)</span>
                 </div>
             </div>
             <div class="dash-stat-card">
@@ -246,7 +239,6 @@
                             <th>Quien diligencia</th>
                             <th>Correo</th>
                             <th>Puntaje</th>
-                            <th>Carta</th>
                             <th>Fecha</th>
                         </tr>
                     </thead>
@@ -264,20 +256,11 @@
                                 <td>{{ $postulacion->departamento }} / {{ $postulacion->municipio }}</td>
                                 <td>{{ $postulacion->nombres_apellidos }}</td>
                                 <td>{{ $postulacion->correo_institucional }}</td>
-                                <td><span class="dash-topbar-badge">{{ $postulacion->puntaje_total }}/84</span></td>
-                                <td>
-                                    @if ($postulacion->carta_compromiso_path)
-                                        <a href="{{ route('postulaciones.carta', $postulacion) }}" target="_blank" class="dash-dl-btn" download>
-                                            <i class="fa fa-download"></i> Descargar
-                                        </a>
-                                    @else
-                                        <span class="dash-no-file">Sin archivo</span>
-                                    @endif
-                                </td>
+                                <td><span class="dash-topbar-badge">{{ $postulacion->puntaje_total }}/190</span></td>
                                 <td>{{ $postulacion->created_at->setTimezone('America/Bogota')->format('d/m/Y H:i') }}</td>
                             </tr>
                             <tr id="row-{{ $postulacion->id }}" class="dash-row-details hidden">
-                                <td colspan="10">
+                                <td colspan="9">
                                     <div class="dash-details">
                                         <div class="dash-details-grid">
                                             <div>
@@ -291,30 +274,21 @@
                                                 <p><strong>Teléfono:</strong> {{ $postulacion->telefono }}</p>
                                             </div>
                                             <div>
-                                                <p><strong>Puntaje D1 (institucional):</strong> {{ $postulacion->puntaje_d1 }}/16</p>
-                                                <p><strong>Puntaje D2 (conectividad):</strong> {{ $postulacion->puntaje_d2 }}/16</p>
-                                                <p><strong>Puntaje D3 (experiencia GD):</strong> {{ $postulacion->puntaje_d3 }}/20</p>
-                                                <p><strong>Puntaje D4 (voluntad política):</strong> {{ $postulacion->puntaje_d4 }}/16</p>
-                                                <p><strong>Puntaje D5 (impacto):</strong> {{ $postulacion->puntaje_d5 }}/16</p>
-                                                <p><strong>Puntaje total:</strong> {{ $postulacion->puntaje_total }}/84</p>
-                                                <p><strong>Participó convocatoria previa:</strong> {{ $postulacion->participo_convocatoria_previa }}</p>
+                                                <p><strong>Puntaje A1 (dirección/gobierno):</strong> {{ $postulacion->puntaje_a1 }}/30</p>
+                                                <p><strong>Puntaje A2 (gestión de datos):</strong> {{ $postulacion->puntaje_a2 }}/50</p>
+                                                <p><strong>Puntaje A3 (base tecnológica):</strong> {{ $postulacion->puntaje_a3 }}/30</p>
+                                                <p><strong>Puntaje A4 (seguridad/privacidad):</strong> {{ $postulacion->puntaje_a4 }}/20</p>
+                                                <p><strong>Puntaje A5 (equipo humano):</strong> {{ $postulacion->puntaje_a5 }}/25</p>
+                                                <p><strong>Puntaje A6 (procesos/valor público):</strong> {{ $postulacion->puntaje_a6 }}/35</p>
+                                                <p><strong>Puntaje total:</strong> {{ $postulacion->puntaje_total }}/190</p>
                                             </div>
                                         </div>
-                                        <hr style="margin:0.8rem 0;border:none;border-top:1px solid #eaeffb;">
-                                        <p><strong>Equipo de trabajo:</strong></p>
-                                        <ul>
-                                            @forelse ($postulacion->equipoMiembros as $miembro)
-                                                <li>{{ $miembro->nombre_completo }} — {{ $miembro->cargo }}, {{ $miembro->dependencia }} ({{ $miembro->correo_institucional }}, {{ $miembro->telefono }}){{ $miembro->orden === 1 ? ' — Responsable de Comunicación' : '' }}</li>
-                                            @empty
-                                                <li>—</li>
-                                            @endforelse
-                                        </ul>
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="10" class="dash-empty">
+                                <td colspan="9" class="dash-empty">
                                     <i class="fa fa-inbox"></i>
                                     <p>No hay postulaciones registradas.</p>
                                 </td>
@@ -339,7 +313,6 @@
             const tbody = document.getElementById('postulacionesTbody');
             const originalTbodyHTML = tbody.innerHTML;
             const paginacion = document.getElementById('tablaPaginacion');
-            const cartaBaseUrl = "{{ url('/postulaciones') }}";
 
             const controls = {
                 q: document.getElementById('searchDocumento'),
@@ -399,14 +372,11 @@
 
             function renderizarTabla(data) {
                 if (!data.length) {
-                    tbody.innerHTML = '<tr><td colspan="10" class="dash-empty"><i class="fa fa-inbox"></i><p>No hay postulaciones con esos filtros.</p></td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="9" class="dash-empty"><i class="fa fa-inbox"></i><p>No hay postulaciones con esos filtros.</p></td></tr>';
                     return;
                 }
 
                 tbody.innerHTML = data.map((item, idx) => {
-                    const carta = item.carta_compromiso_path
-                        ? `<a href="${cartaBaseUrl}/${item.id}/carta" target="_blank" class="dash-dl-btn" download><i class="fa fa-download"></i> Descargar</a>`
-                        : '<span class="dash-no-file">Sin archivo</span>';
                     const fecha = item.created_at ? new Date(item.created_at).toLocaleString('es-CO') : '—';
 
                     return `
@@ -418,12 +388,11 @@
                             <td>${escapeHtml(item.departamento)} / ${escapeHtml(item.municipio)}</td>
                             <td>${escapeHtml(item.nombres_apellidos)}</td>
                             <td>${escapeHtml(item.correo_institucional)}</td>
-                            <td><span class="dash-topbar-badge">${item.puntaje_total}/84</span></td>
-                            <td>${carta}</td>
+                            <td><span class="dash-topbar-badge">${item.puntaje_total}/190</span></td>
                             <td>${fecha}</td>
                         </tr>
                         <tr id="row-${item.id}" class="dash-row-details hidden">
-                            <td colspan="10">
+                            <td colspan="9">
                                 <div class="dash-details">
                                     <div class="dash-details-grid">
                                         <div>
@@ -434,9 +403,9 @@
                                             <p><strong>Teléfono:</strong> ${escapeHtml(item.telefono)}</p>
                                         </div>
                                         <div>
-                                            <p><strong>D1:</strong> ${item.puntaje_d1}/16 · <strong>D2:</strong> ${item.puntaje_d2}/16 · <strong>D3:</strong> ${item.puntaje_d3}/20</p>
-                                            <p><strong>D4:</strong> ${item.puntaje_d4}/16 · <strong>D5:</strong> ${item.puntaje_d5}/16</p>
-                                            <p><strong>Puntaje total:</strong> ${item.puntaje_total}/84</p>
+                                            <p><strong>A1:</strong> ${item.puntaje_a1}/30 · <strong>A2:</strong> ${item.puntaje_a2}/50 · <strong>A3:</strong> ${item.puntaje_a3}/30</p>
+                                            <p><strong>A4:</strong> ${item.puntaje_a4}/20 · <strong>A5:</strong> ${item.puntaje_a5}/25 · <strong>A6:</strong> ${item.puntaje_a6}/35</p>
+                                            <p><strong>Puntaje total:</strong> ${item.puntaje_total}/190</p>
                                         </div>
                                     </div>
                                 </div>
@@ -551,7 +520,7 @@
                 new Chart(document.getElementById('chartPromedioDepartamento'), {
                     type: 'bar',
                     data: { labels: data.promedio_por_departamento.map(d => d.departamento), datasets: [{ data: data.promedio_por_departamento.map(d => d.promedio), backgroundColor: colors, borderRadius: 6 }] },
-                    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { beginAtZero: true, max: 84 } }, ...tooltipLabel() }
+                    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { beginAtZero: true, max: 190 } }, ...tooltipLabel() }
                 });
             })
             .catch(() => { chartsLoading.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Error al cargar gráficas'; });

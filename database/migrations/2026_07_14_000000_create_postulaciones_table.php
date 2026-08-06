@@ -30,58 +30,64 @@ return new class extends Migration
             $table->string('correo_institucional');
             $table->string('correo_alternativo')->nullable();
             $table->string('telefono');
-            $table->string('es_contacto_comunicacion');
 
-            // Sección 3. Evaluación de Dimensiones (niveles 1-4 por pregunta)
-            // D1. Categoría territorial y capacidad institucional
-            $table->unsignedTinyInteger('p19_categoria_territorial');
-            $table->unsignedTinyInteger('p20_dependencia_tic');
-            $table->unsignedTinyInteger('p21_personal_datos_sistemas');
-            $table->unsignedTinyInteger('p22_pdt_transformacion_digital');
-            // D2. Conectividad y capacidad tecnológica
-            $table->unsignedTinyInteger('p23_estabilidad_internet');
-            $table->unsignedTinyInteger('p24_velocidad_internet');
-            $table->unsignedTinyInteger('p25_equipos_computo');
-            $table->unsignedTinyInteger('p26_participacion_talleres_virtuales');
-            // D3. Experiencia previa en Gobierno Digital
-            $table->unsignedTinyInteger('p27_programas_previos_mintic');
-            $table->unsignedTinyInteger('p28_furag_igd');
-            $table->unsignedTinyInteger('p29_datos_abiertos');
-            $table->unsignedTinyInteger('p30_sistemas_informacion_decisiones');
-            $table->unsignedTinyInteger('p31_personal_formacion_gd');
-            // D4. Voluntad política y compromiso institucional y de sostenibilidad
-            $table->unsignedTinyInteger('p32_firma_carta_compromiso');
-            $table->unsignedTinyInteger('p33_autoridad_conoce_postulacion');
-            $table->unsignedTinyInteger('p34_autoridad_compromete_participacion');
-            $table->unsignedTinyInteger('p35_autoridad_garantiza_equipo_canal');
-            // D5. Potencial de impacto territorial
-            $table->unsignedTinyInteger('p36_problematica_clara_pertinente');
-            $table->unsignedTinyInteger('p37_datos_fuentes_disponibles');
-            $table->unsignedTinyInteger('p38_relacion_meta_pdt');
-            $table->unsignedTinyInteger('p39_beneficio_esperado_claro');
+            // Sección 3. Instrumento unificado de autodiagnóstico F1+E6 (escala 1-5 por pregunta)
+            // A1. Dirección y gobierno institucional
+            $table->unsignedTinyInteger('p1_lineamientos_gestion_datos_ia');
+            $table->unsignedTinyInteger('p2_responsable_datos_designado');
+            $table->unsignedTinyInteger('p3_instancia_prioriza_casos_uso');
+            $table->unsignedTinyInteger('p4_instrumentos_valoran_riesgos');
+            $table->unsignedTinyInteger('p5_persona_responsable_administracion_datos');
+            $table->unsignedTinyInteger('p6_documenta_ajustes_gestion_datos');
+            // A2. Gestión de datos
+            $table->unsignedTinyInteger('p7_inventario_datos_fuentes');
+            $table->unsignedTinyInteger('p8_procedimientos_limpieza_datos');
+            $table->unsignedTinyInteger('p9_datos_estandarizados_interoperables');
+            $table->unsignedTinyInteger('p10_gestiona_accesos_trazabilidad');
+            $table->unsignedTinyInteger('p11_datos_formatos_homogeneos');
+            $table->unsignedTinyInteger('p12_informacion_documentada_estructurada');
+            $table->unsignedTinyInteger('p13_actividades_basicas_organizacion_datos');
+            $table->unsignedTinyInteger('p14_documenta_metadatos_iniciales');
+            $table->unsignedTinyInteger('p15_catalogo_institucional_datos');
+            $table->unsignedTinyInteger('p16_datos_abiertos_organizados');
+            // A3. Base tecnológica
+            $table->unsignedTinyInteger('p17_dispone_apis');
+            $table->unsignedTinyInteger('p18_capacidad_almacenamiento_procesamiento');
+            $table->unsignedTinyInteger('p19_herramientas_analisis_visualizacion');
+            $table->unsignedTinyInteger('p20_mecanismos_seguimiento_sistemas_ia');
+            $table->unsignedTinyInteger('p21_intercambio_semantico_datos');
+            $table->unsignedTinyInteger('p22_mecanismos_compartir_datos_modelos');
+            // A4. Seguridad y privacidad
+            $table->unsignedTinyInteger('p23_controles_seguridad_riesgos');
+            $table->unsignedTinyInteger('p24_gestiona_datos_personales_privacidad');
+            $table->unsignedTinyInteger('p25_controla_perfiles_accesos_monitoreo');
+            $table->unsignedTinyInteger('p26_medidas_continuidad_respaldo_incidentes');
+            // A5. Capacidades del equipo humano
+            $table->unsignedTinyInteger('p27_perfiles_roles_datos_tecnologia');
+            $table->unsignedTinyInteger('p28_funcionarios_certificados_capacitados');
+            $table->unsignedTinyInteger('p29_articula_trabajo_interdisciplinario');
+            $table->unsignedTinyInteger('p30_promueve_nuevas_iniciativas_ia');
+            $table->unsignedTinyInteger('p31_participa_redes_ecosistema_ia');
+            // A6. Procesos y valor público
+            $table->unsignedTinyInteger('p32_piloto_ia_implementado');
+            $table->unsignedTinyInteger('p33_procesos_reglas_negocio_claras');
+            $table->unsignedTinyInteger('p34_mide_reporta_resultados_ia');
+            $table->unsignedTinyInteger('p35_gestiona_cambio_organizacional');
+            $table->unsignedTinyInteger('p36_mas_de_un_sistema_ia_funcionamiento');
+            $table->unsignedTinyInteger('p37_mide_efectos_sistemas_ia');
+            $table->unsignedTinyInteger('p38_implementa_modelos_predictivos_avanzados');
 
             // Puntajes calculados (persistidos para poder ordenar/filtrar en el dashboard)
-            $table->unsignedTinyInteger('puntaje_d1')->nullable();
-            $table->unsignedTinyInteger('puntaje_d2')->nullable();
-            $table->unsignedTinyInteger('puntaje_d3')->nullable();
-            $table->unsignedTinyInteger('puntaje_d4')->nullable();
-            $table->unsignedTinyInteger('puntaje_d5')->nullable();
+            $table->unsignedTinyInteger('puntaje_a1')->nullable();
+            $table->unsignedTinyInteger('puntaje_a2')->nullable();
+            $table->unsignedTinyInteger('puntaje_a3')->nullable();
+            $table->unsignedTinyInteger('puntaje_a4')->nullable();
+            $table->unsignedTinyInteger('puntaje_a5')->nullable();
+            $table->unsignedTinyInteger('puntaje_a6')->nullable();
             $table->unsignedSmallInteger('puntaje_total')->nullable();
 
-            // Sección 4. Participación en talleres informativos y disponibilidad institucional
-            $table->string('participo_convocatoria_previa');
-            $table->string('disponibilidad_actividades');
-            $table->string('disponibilidad_seguimiento');
-
-            // Sección 5. Declaraciones y autorización
-            $table->boolean('declara_veracidad');
-            $table->boolean('entiende_no_seleccion_automatica');
-            $table->boolean('autoriza_verificacion_info');
-            $table->boolean('acepta_formalizar_compromisos');
+            // Autorización de tratamiento de datos personales (Ley 1581 de 2012)
             $table->boolean('autoriza_tratamiento_datos_personales');
-
-            // Anexo. Carta de manifestación de interés y compromiso institucional
-            $table->string('carta_compromiso_path');
 
             $table->timestamps();
 

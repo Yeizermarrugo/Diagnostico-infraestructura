@@ -56,307 +56,250 @@ return [
         'Otro',
     ],
 
-    'es_contacto_comunicacion' => [
-        'Sí',
-        'No',
-        'Está por definirse',
-    ],
-
     /*
     |--------------------------------------------------------------------------
-    | Sección 4 — Participación en talleres informativos y disponibilidad
-    |--------------------------------------------------------------------------
-    */
-
-    'participo_convocatoria_previa' => [
-        'Sí, participó',
-        'No ha participado',
-        'No sabe',
-    ],
-
-    'disponibilidad' => [
-        'Sí',
-        'No',
-        'No Sabe',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Sección 3 — Evaluación de Dimensiones
+    | Sección 3 — Instrumento unificado de autodiagnóstico (F1 + E6)
     |--------------------------------------------------------------------------
     |
-    | Cada pregunta tiene exactamente 4 opciones. El "nivel" (4 a 1) es el
-    | valor que se guarda; el texto es descriptivo y único por pregunta.
-    | Esta estructura es la fuente única de verdad para validación, vista
-    | (wizard) y cálculo de puntajes por dimensión.
+    | 38 preguntas agrupadas en 6 ámbitos. Todas comparten la misma escala de
+    | valoración 1 (Inicial) a 5 (Optimizado) — no hay texto distinto por
+    | opción, se guarda el nivel numérico elegido. Esta estructura es la
+    | fuente única de verdad para validación, vista (wizard) y cálculo de
+    | puntajes por ámbito.
     |
     */
 
-    'niveles_legend' => [
-        4 => 'Se cumple totalmente',
-        3 => 'Se cumple en grado alto',
-        2 => 'Se cumple parcialmente',
-        1 => 'No se cumple',
+    'escala_ambitos' => [
+        1 => 'Inicial',
+        2 => null,
+        3 => null,
+        4 => null,
+        5 => 'Optimizado',
     ],
 
-    'dimensiones' => [
-        'D1' => [
-            'label' => 'Categoría territorial y capacidad institucional',
+    'ambitos' => [
+        'A1' => [
+            'label' => 'Dirección y gobierno institucional',
             'preguntas' => [
                 [
-                    'campo' => 'p19_categoria_territorial',
+                    'campo' => 'p1_lineamientos_gestion_datos_ia',
                     'numero' => 1,
-                    'texto' => '¿En qué categoría territorial se ubica la entidad según la Ley 617 de 2000?',
-                    'opciones' => [
-                        4 => 'Categoría 4, 5 o 6',
-                        3 => 'Categoría 2 o 3',
-                        2 => 'Especial o 1',
-                        1 => 'No sabe / no responde',
-                    ],
+                    'texto' => '¿La entidad ha adoptado lineamientos para orientar la gestión de datos y el desarrollo de iniciativas de inteligencia artificial?',
                 ],
                 [
-                    'campo' => 'p20_dependencia_tic',
+                    'campo' => 'p2_responsable_datos_designado',
                     'numero' => 2,
-                    'texto' => '¿Cuenta con dependencia o responsable formal de TIC o Gobierno Digital?',
-                    'opciones' => [
-                        4 => 'Dependencia u oficina formal',
-                        3 => 'Persona formalmente designada',
-                        2 => 'Responsable informal o función compartida',
-                        1 => 'No cuenta / No sabe',
-                    ],
+                    'texto' => '¿La entidad ha designado formalmente un responsable de datos con funciones asociadas a la gestión de datos e inteligencia artificial?',
                 ],
                 [
-                    'campo' => 'p21_personal_datos_sistemas',
+                    'campo' => 'p3_instancia_prioriza_casos_uso',
                     'numero' => 3,
-                    'texto' => '¿Dispone de personal propio de apoyo en datos, sistemas o estadística?',
-                    'opciones' => [
-                        4 => 'Equipo interno de planta',
-                        3 => 'Al menos una persona de planta',
-                        2 => 'Principalmente contratistas externos',
-                        1 => 'No cuenta / No sabe',
-                    ],
+                    'texto' => '¿La entidad cuenta con una instancia que prioriza casos de uso, revisa avances y adopta acuerdos de seguimiento?',
                 ],
                 [
-                    'campo' => 'p22_pdt_transformacion_digital',
+                    'campo' => 'p4_instrumentos_valoran_riesgos',
                     'numero' => 4,
-                    'texto' => '¿El Plan de Desarrollo Territorial vigente incluye transformación digital, datos o IA?',
-                    'opciones' => [
-                        4 => 'Sí, con meta o programa y soporte verificable',
-                        3 => 'Sí, mencionado sin soporte',
-                        2 => 'En formulación o de forma tangencial',
-                        1 => 'No / No sabe',
-                    ],
+                    'texto' => '¿La entidad ha aplicado instrumentos para valorar riesgos, efectos y condiciones de uso de datos o sistemas asociados a inteligencia artificial para garantizar trazabilidad?',
                 ],
-            ],
-        ],
-
-        'D2' => [
-            'label' => 'Conectividad y capacidad tecnológica',
-            'preguntas' => [
                 [
-                    'campo' => 'p23_estabilidad_internet',
+                    'campo' => 'p5_persona_responsable_administracion_datos',
                     'numero' => 5,
-                    'texto' => '¿Cómo es la estabilidad de la conexión a internet en la sede principal?',
-                    'opciones' => [
-                        4 => 'Estable',
-                        3 => 'Con interrupciones frecuentes',
-                        2 => 'Limitada o inestable',
-                        1 => 'No permanente / No sabe',
-                    ],
+                    'texto' => '¿La entidad cuenta con una persona responsable de la administración de datos?',
                 ],
                 [
-                    'campo' => 'p24_velocidad_internet',
+                    'campo' => 'p6_documenta_ajustes_gestion_datos',
                     'numero' => 6,
-                    'texto' => '¿Qué velocidad de internet tiene disponible la sede principal?',
-                    'opciones' => [
-                        4 => '31 Mbps o más',
-                        3 => '11 a 30 Mbps',
-                        2 => '5 a 10 Mbps',
-                        1 => 'Menos de 5 Mbps / No sabe',
-                    ],
+                    'texto' => '¿La entidad documenta de manera periódica las acciones de ajuste, revisión y perfeccionamiento aplicadas a la gestión de datos y a los sistemas de inteligencia artificial?',
                 ],
+            ],
+        ],
+
+        'A2' => [
+            'label' => 'Gestión de datos',
+            'preguntas' => [
                 [
-                    'campo' => 'p25_equipos_computo',
+                    'campo' => 'p7_inventario_datos_fuentes',
                     'numero' => 7,
-                    'texto' => '¿Dispone de equipos de cómputo para participar en talleres virtuales?',
-                    'opciones' => [
-                        4 => 'Suficientes',
-                        3 => 'Limitados pero operativos',
-                        2 => 'Dependería de equipos personales',
-                        1 => 'No dispone / No sabe',
-                    ],
+                    'texto' => '¿La entidad dispone de un inventario de datos que identifique las fuentes de información con potencial de uso en iniciativas de inteligencia artificial?',
                 ],
                 [
-                    'campo' => 'p26_participacion_talleres_virtuales',
+                    'campo' => 'p8_procedimientos_limpieza_datos',
                     'numero' => 8,
-                    'texto' => '¿Puede participar en talleres virtuales mediante Meet, Teams o Zoom?',
-                    'opciones' => [
-                        4 => 'Sin dificultad',
-                        3 => 'Parcial o con apoyo',
-                        2 => 'Con restricciones técnicas',
-                        1 => 'No / No sabe',
-                    ],
+                    'texto' => '¿La entidad ha formalizado y documentado procedimientos para la limpieza, transformación, validación y organización de datos con fines de uso en inteligencia artificial?',
                 ],
-            ],
-        ],
-
-        'D3' => [
-            'label' => 'Experiencia previa en Gobierno Digital',
-            'preguntas' => [
                 [
-                    'campo' => 'p27_programas_previos_mintic',
+                    'campo' => 'p9_datos_estandarizados_interoperables',
                     'numero' => 9,
-                    'texto' => '¿Ha participado en programas o convocatorias previas de MinTIC en transformación digital o IA?',
-                    'opciones' => [
-                        4 => 'Dos o más líneas (incluye Territorios IA)',
-                        3 => 'Una línea',
-                        2 => 'Inscrita o en gestión sin culminar',
-                        1 => 'No / No sabe',
-                    ],
+                    'texto' => '¿La entidad dispone de datos estandarizados, interoperables y reutilizables para inteligencia artificial?',
                 ],
                 [
-                    'campo' => 'p28_furag_igd',
+                    'campo' => 'p10_gestiona_accesos_trazabilidad',
                     'numero' => 10,
-                    'texto' => '¿Ha reportado información en el FURAG o en el Índice de Gobierno Digital?',
-                    'opciones' => [
-                        4 => 'Sí, vigencia reciente',
-                        3 => 'Sí, vigencias anteriores',
-                        2 => 'Reporte parcial o incompleto',
-                        1 => 'No / No sabe',
-                    ],
+                    'texto' => '¿La entidad gestiona accesos y trazabilidad para la consulta, uso, modificación y compartición de datos?',
                 ],
                 [
-                    'campo' => 'p29_datos_abiertos',
+                    'campo' => 'p11_datos_formatos_homogeneos',
                     'numero' => 11,
-                    'texto' => '¿Publica datos abiertos en datos.gov.co o en un portal institucional?',
-                    'opciones' => [
-                        4 => 'datos.gov.co y portal propio',
-                        3 => 'datos.gov.co',
-                        2 => 'Solo portal propio',
-                        1 => 'No / No sabe',
-                    ],
+                    'texto' => '¿La entidad tiene los datos en formatos homogéneos?',
                 ],
                 [
-                    'campo' => 'p30_sistemas_informacion_decisiones',
+                    'campo' => 'p12_informacion_documentada_estructurada',
                     'numero' => 12,
-                    'texto' => '¿Cuenta con sistemas de información que apoyen la toma de decisiones públicas?',
-                    'opciones' => [
-                        4 => 'Tres o más sistemas',
-                        3 => 'Uno o dos sistemas',
-                        2 => 'Sistemas básicos sin uso para decisiones',
-                        1 => 'No cuenta / No sabe',
-                    ],
+                    'texto' => '¿La entidad cuenta con información documentada y estructurada que facilite su uso en iniciativas de inteligencia artificial?',
                 ],
                 [
-                    'campo' => 'p31_personal_formacion_gd',
+                    'campo' => 'p13_actividades_basicas_organizacion_datos',
                     'numero' => 13,
-                    'texto' => '¿Tiene personal con formación en Gobierno Digital, datos o IA?',
-                    'opciones' => [
-                        4 => 'Formación específica en datos o IA',
-                        3 => 'Formación básica en Gobierno Digital',
-                        2 => 'Formación informal o autodidacta',
-                        1 => 'No / No sabe',
-                    ],
+                    'texto' => '¿La entidad ha iniciado actividades básicas de organización, depuración o clasificación de datos para facilitar su uso en proyectos de inteligencia artificial?',
                 ],
-            ],
-        ],
-
-        'D4' => [
-            'label' => 'Voluntad política y compromiso institucional y de sostenibilidad',
-            'preguntas' => [
                 [
-                    'campo' => 'p32_firma_carta_compromiso',
+                    'campo' => 'p14_documenta_metadatos_iniciales',
                     'numero' => 14,
-                    'texto' => '¿Quién suscribe la carta de manifestación de interés y compromiso?',
-                    'opciones' => [
-                        4 => 'Alcalde, gobernador o representante legal',
-                        3 => 'Delegado con capacidad acreditada',
-                        2 => 'Funcionario sin capacidad acreditada (subsanable)',
-                        1 => 'No aplica: la ausencia es eliminatoria',
-                    ],
+                    'texto' => '¿La entidad ha comenzado a documentar atributos, estructura y características de sus datos mediante esquemas iniciales de metadatos?',
                 ],
                 [
-                    'campo' => 'p33_autoridad_conoce_postulacion',
+                    'campo' => 'p15_catalogo_institucional_datos',
                     'numero' => 15,
-                    'texto' => '¿La máxima autoridad conoce la postulación al proyecto?',
-                    'opciones' => [
-                        4 => 'Sí, plenamente',
-                        3 => 'Sí, informado parcialmente',
-                        2 => 'En socialización interna',
-                        1 => 'No',
-                    ],
+                    'texto' => '¿La entidad ha consolidado un catálogo institucional que organice y describa los conjuntos de datos priorizados para proyectos de inteligencia artificial?',
                 ],
                 [
-                    'campo' => 'p34_autoridad_compromete_participacion',
+                    'campo' => 'p16_datos_abiertos_organizados',
                     'numero' => 16,
-                    'texto' => '¿La máxima autoridad se compromete a facilitar la participación de su equipo en las actividades?',
-                    'opciones' => [
-                        4 => 'Sí, sin condiciones',
-                        3 => 'Sí, con programación previa',
-                        2 => 'Parcial, sujeto a disponibilidad',
-                        1 => 'No',
-                    ],
-                ],
-                [
-                    'campo' => 'p35_autoridad_garantiza_equipo_canal',
-                    'numero' => 17,
-                    'texto' => '¿La máxima autoridad garantiza equipo mínimo y delega a la persona que diligencia el formulario como canal oficial?',
-                    'opciones' => [
-                        4 => 'Sí, delega y compromete dos o más personas',
-                        3 => 'Solo compromete equipo, autorización de delegación en trámite',
-                        2 => 'En proceso de confirmación',
-                        1 => 'No',
-                    ],
+                    'texto' => '¿La entidad dispone de conjuntos de datos abiertos organizados, documentados y utilizables en iniciativas de inteligencia artificial?',
                 ],
             ],
         ],
 
-        'D5' => [
-            'label' => 'Potencial de impacto territorial',
+        'A3' => [
+            'label' => 'Base tecnológica',
             'preguntas' => [
                 [
-                    'campo' => 'p36_problematica_clara_pertinente',
+                    'campo' => 'p17_dispone_apis',
+                    'numero' => 17,
+                    'texto' => '¿La entidad dispone de interfaces de programación (API) que permiten el acceso, consulta o intercambio de datos para iniciativas de inteligencia artificial?',
+                ],
+                [
+                    'campo' => 'p18_capacidad_almacenamiento_procesamiento',
                     'numero' => 18,
-                    'texto' => '¿Qué tan clara o pertinente es la problemática pública que se puede abordar desde el uso de datos o herramientas de IA?',
-                    'opciones' => [
-                        4 => 'Clara y pertinente',
-                        3 => 'Clara, sin precisar su impacto o pertinencia',
-                        2 => 'General o vaga',
-                        1 => 'Ausente o no pertinente',
-                    ],
+                    'texto' => '¿La entidad dispone de capacidad de almacenamiento y procesamiento acorde con sus casos de uso prioritarios?',
                 ],
                 [
-                    'campo' => 'p37_datos_fuentes_disponibles',
+                    'campo' => 'p19_herramientas_analisis_visualizacion',
                     'numero' => 19,
-                    'texto' => '¿Dispone de datos o fuentes para abordar la problemática?',
-                    'opciones' => [
-                        4 => 'Datos propios',
-                        3 => 'Datos de otras fuentes públicas',
-                        2 => 'Parcialmente',
-                        1 => 'No / No sabe',
-                    ],
+                    'texto' => '¿La entidad cuenta con herramientas para análisis, visualización, modelado o automatización con uso controlado?',
                 ],
                 [
-                    'campo' => 'p38_relacion_meta_pdt',
+                    'campo' => 'p20_mecanismos_seguimiento_sistemas_ia',
                     'numero' => 20,
-                    'texto' => '¿La problemática se relaciona con una meta o programa del PDT vigente?',
-                    'opciones' => [
-                        4 => 'Sí, meta o programa identificado',
-                        3 => 'Sí, línea estratégica sin meta puntual',
-                        2 => 'Mención tangencial',
-                        1 => 'No / No sabe',
-                    ],
+                    'texto' => '¿La entidad cuenta con mecanismos automáticos para hacer seguimiento al funcionamiento de sus sistemas de inteligencia artificial y de los flujos de datos asociados?',
                 ],
                 [
-                    'campo' => 'p39_beneficio_esperado_claro',
+                    'campo' => 'p21_intercambio_semantico_datos',
                     'numero' => 21,
-                    'texto' => '¿Qué tan claro es el beneficio esperado para la entidad y la ciudadanía?',
-                    'opciones' => [
-                        4 => 'Claro y específico',
-                        3 => 'Claro pero general',
-                        2 => 'Genérico',
-                        1 => 'Ausente',
-                    ],
+                    'texto' => '¿La entidad ha implementado mecanismos que permiten el intercambio semántico de datos entre sistemas, plataformas o servicios institucionales?',
+                ],
+                [
+                    'campo' => 'p22_mecanismos_compartir_datos_modelos',
+                    'numero' => 22,
+                    'texto' => '¿La entidad dispone de mecanismos institucionales para compartir datos y modelos con fines de reutilización, articulación o colaboración?',
+                ],
+            ],
+        ],
+
+        'A4' => [
+            'label' => 'Seguridad y privacidad',
+            'preguntas' => [
+                [
+                    'campo' => 'p23_controles_seguridad_riesgos',
+                    'numero' => 23,
+                    'texto' => '¿La entidad aplica controles de seguridad y gestión de riesgos alineados con su marco institucional?',
+                ],
+                [
+                    'campo' => 'p24_gestiona_datos_personales_privacidad',
+                    'numero' => 24,
+                    'texto' => '¿La entidad gestiona datos personales e información sensible con criterios de privacidad, minimización y anonimización cuando corresponde?',
+                ],
+                [
+                    'campo' => 'p25_controla_perfiles_accesos_monitoreo',
+                    'numero' => 25,
+                    'texto' => '¿La entidad controla perfiles, accesos y monitoreo sobre los activos de información usados en analítica o inteligencia artificial?',
+                ],
+                [
+                    'campo' => 'p26_medidas_continuidad_respaldo_incidentes',
+                    'numero' => 26,
+                    'texto' => '¿La entidad cuenta con medidas de continuidad, respaldo y respuesta a incidentes para servicios y datos críticos?',
+                ],
+            ],
+        ],
+
+        'A5' => [
+            'label' => 'Capacidades del equipo humano',
+            'preguntas' => [
+                [
+                    'campo' => 'p27_perfiles_roles_datos_tecnologia',
+                    'numero' => 27,
+                    'texto' => '¿La entidad dispone de perfiles o roles asociados a datos, tecnología, seguridad y gestión misional del proyecto?',
+                ],
+                [
+                    'campo' => 'p28_funcionarios_certificados_capacitados',
+                    'numero' => 28,
+                    'texto' => '¿La entidad cuenta con funcionarios certificados o capacitados en datos, analítica o inteligencia artificial?',
+                ],
+                [
+                    'campo' => 'p29_articula_trabajo_interdisciplinario',
+                    'numero' => 29,
+                    'texto' => '¿La entidad articula trabajo interdisciplinario entre áreas misionales, jurídicas, técnicas y directivas?',
+                ],
+                [
+                    'campo' => 'p30_promueve_nuevas_iniciativas_ia',
+                    'numero' => 30,
+                    'texto' => '¿La entidad promueve de forma permanente el desarrollo de nuevas iniciativas, capacidades y aplicaciones institucionales basadas en inteligencia artificial?',
+                ],
+                [
+                    'campo' => 'p31_participa_redes_ecosistema_ia',
+                    'numero' => 31,
+                    'texto' => '¿La entidad participa en redes, iniciativas o mecanismos de articulación que fortalezcan el ecosistema nacional de inteligencia artificial?',
+                ],
+            ],
+        ],
+
+        'A6' => [
+            'label' => 'Procesos y valor público',
+            'preguntas' => [
+                [
+                    'campo' => 'p32_piloto_ia_implementado',
+                    'numero' => 32,
+                    'texto' => '¿La entidad ha desarrollado e implementado piloto(s) de inteligencia artificial o iniciativa(s) basada(s) en datos orientada(s) a evaluar su viabilidad en procesos institucionales y a fortalecer los servicios digitales, la innovación pública o la competitividad territorial?',
+                ],
+                [
+                    'campo' => 'p33_procesos_reglas_negocio_claras',
+                    'numero' => 33,
+                    'texto' => '¿Los procesos vinculados al caso de uso están descritos y cuentan con reglas de negocio suficientemente claras?',
+                ],
+                [
+                    'campo' => 'p34_mide_reporta_resultados_ia',
+                    'numero' => 34,
+                    'texto' => '¿La entidad mide y reporta de manera periódica los resultados obtenidos mediante el uso de inteligencia artificial?',
+                ],
+                [
+                    'campo' => 'p35_gestiona_cambio_organizacional',
+                    'numero' => 35,
+                    'texto' => '¿La entidad gestiona cambios organizacionales, comunicación y apropiación de los resultados por parte de usuarios internos o la ciudadanía?',
+                ],
+                [
+                    'campo' => 'p36_mas_de_un_sistema_ia_funcionamiento',
+                    'numero' => 36,
+                    'texto' => '¿La entidad tiene en funcionamiento más de un sistema de inteligencia artificial aplicado a procesos institucionales?',
+                ],
+                [
+                    'campo' => 'p37_mide_efectos_sistemas_ia',
+                    'numero' => 37,
+                    'texto' => '¿La entidad mide los efectos de sus sistemas de inteligencia artificial mediante variables definidas para evaluar resultados institucionales?',
+                ],
+                [
+                    'campo' => 'p38_implementa_modelos_predictivos_avanzados',
+                    'numero' => 38,
+                    'texto' => '¿La entidad implementa modelos predictivos o herramientas avanzadas de inteligencia artificial con resultados medibles en sostenibilidad territorial, eficiencia institucional, competitividad o calidad de vida?',
                 ],
             ],
         ],

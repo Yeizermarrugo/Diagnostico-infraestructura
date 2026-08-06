@@ -9,41 +9,60 @@ class Postulacion extends Model
     protected $table = 'postulaciones';
 
     /**
-     * Campos de la rúbrica (Sección 3) agrupados por dimensión, en el mismo
+     * Campos de la rúbrica (Sección 3) agrupados por ámbito, en el mismo
      * orden que config/instrumento.php. Fuente única de verdad para el
-     * cálculo de puntajes por dimensión y el total.
+     * cálculo de puntajes por ámbito y el total.
      */
-    public const DIMENSIONES = [
-        'D1' => [
-            'p19_categoria_territorial',
-            'p20_dependencia_tic',
-            'p21_personal_datos_sistemas',
-            'p22_pdt_transformacion_digital',
+    public const AMBITOS = [
+        'A1' => [
+            'p1_lineamientos_gestion_datos_ia',
+            'p2_responsable_datos_designado',
+            'p3_instancia_prioriza_casos_uso',
+            'p4_instrumentos_valoran_riesgos',
+            'p5_persona_responsable_administracion_datos',
+            'p6_documenta_ajustes_gestion_datos',
         ],
-        'D2' => [
-            'p23_estabilidad_internet',
-            'p24_velocidad_internet',
-            'p25_equipos_computo',
-            'p26_participacion_talleres_virtuales',
+        'A2' => [
+            'p7_inventario_datos_fuentes',
+            'p8_procedimientos_limpieza_datos',
+            'p9_datos_estandarizados_interoperables',
+            'p10_gestiona_accesos_trazabilidad',
+            'p11_datos_formatos_homogeneos',
+            'p12_informacion_documentada_estructurada',
+            'p13_actividades_basicas_organizacion_datos',
+            'p14_documenta_metadatos_iniciales',
+            'p15_catalogo_institucional_datos',
+            'p16_datos_abiertos_organizados',
         ],
-        'D3' => [
-            'p27_programas_previos_mintic',
-            'p28_furag_igd',
-            'p29_datos_abiertos',
-            'p30_sistemas_informacion_decisiones',
-            'p31_personal_formacion_gd',
+        'A3' => [
+            'p17_dispone_apis',
+            'p18_capacidad_almacenamiento_procesamiento',
+            'p19_herramientas_analisis_visualizacion',
+            'p20_mecanismos_seguimiento_sistemas_ia',
+            'p21_intercambio_semantico_datos',
+            'p22_mecanismos_compartir_datos_modelos',
         ],
-        'D4' => [
-            'p32_firma_carta_compromiso',
-            'p33_autoridad_conoce_postulacion',
-            'p34_autoridad_compromete_participacion',
-            'p35_autoridad_garantiza_equipo_canal',
+        'A4' => [
+            'p23_controles_seguridad_riesgos',
+            'p24_gestiona_datos_personales_privacidad',
+            'p25_controla_perfiles_accesos_monitoreo',
+            'p26_medidas_continuidad_respaldo_incidentes',
         ],
-        'D5' => [
-            'p36_problematica_clara_pertinente',
-            'p37_datos_fuentes_disponibles',
-            'p38_relacion_meta_pdt',
-            'p39_beneficio_esperado_claro',
+        'A5' => [
+            'p27_perfiles_roles_datos_tecnologia',
+            'p28_funcionarios_certificados_capacitados',
+            'p29_articula_trabajo_interdisciplinario',
+            'p30_promueve_nuevas_iniciativas_ia',
+            'p31_participa_redes_ecosistema_ia',
+        ],
+        'A6' => [
+            'p32_piloto_ia_implementado',
+            'p33_procesos_reglas_negocio_claras',
+            'p34_mide_reporta_resultados_ia',
+            'p35_gestiona_cambio_organizacional',
+            'p36_mas_de_un_sistema_ia_funcionamiento',
+            'p37_mide_efectos_sistemas_ia',
+            'p38_implementa_modelos_predictivos_avanzados',
         ],
     ];
 
@@ -66,48 +85,49 @@ class Postulacion extends Model
         'correo_institucional',
         'correo_alternativo',
         'telefono',
-        'es_contacto_comunicacion',
-        // Sección 3. Evaluación de Dimensiones
-        'p19_categoria_territorial',
-        'p20_dependencia_tic',
-        'p21_personal_datos_sistemas',
-        'p22_pdt_transformacion_digital',
-        'p23_estabilidad_internet',
-        'p24_velocidad_internet',
-        'p25_equipos_computo',
-        'p26_participacion_talleres_virtuales',
-        'p27_programas_previos_mintic',
-        'p28_furag_igd',
-        'p29_datos_abiertos',
-        'p30_sistemas_informacion_decisiones',
-        'p31_personal_formacion_gd',
-        'p32_firma_carta_compromiso',
-        'p33_autoridad_conoce_postulacion',
-        'p34_autoridad_compromete_participacion',
-        'p35_autoridad_garantiza_equipo_canal',
-        'p36_problematica_clara_pertinente',
-        'p37_datos_fuentes_disponibles',
-        'p38_relacion_meta_pdt',
-        'p39_beneficio_esperado_claro',
-        // Sección 4. Participación en talleres informativos y disponibilidad institucional
-        'participo_convocatoria_previa',
-        'disponibilidad_actividades',
-        'disponibilidad_seguimiento',
-        // Sección 5. Declaraciones y autorización
-        'declara_veracidad',
-        'entiende_no_seleccion_automatica',
-        'autoriza_verificacion_info',
-        'acepta_formalizar_compromisos',
+        // Sección 3. Instrumento unificado de autodiagnóstico (F1 + E6)
+        'p1_lineamientos_gestion_datos_ia',
+        'p2_responsable_datos_designado',
+        'p3_instancia_prioriza_casos_uso',
+        'p4_instrumentos_valoran_riesgos',
+        'p5_persona_responsable_administracion_datos',
+        'p6_documenta_ajustes_gestion_datos',
+        'p7_inventario_datos_fuentes',
+        'p8_procedimientos_limpieza_datos',
+        'p9_datos_estandarizados_interoperables',
+        'p10_gestiona_accesos_trazabilidad',
+        'p11_datos_formatos_homogeneos',
+        'p12_informacion_documentada_estructurada',
+        'p13_actividades_basicas_organizacion_datos',
+        'p14_documenta_metadatos_iniciales',
+        'p15_catalogo_institucional_datos',
+        'p16_datos_abiertos_organizados',
+        'p17_dispone_apis',
+        'p18_capacidad_almacenamiento_procesamiento',
+        'p19_herramientas_analisis_visualizacion',
+        'p20_mecanismos_seguimiento_sistemas_ia',
+        'p21_intercambio_semantico_datos',
+        'p22_mecanismos_compartir_datos_modelos',
+        'p23_controles_seguridad_riesgos',
+        'p24_gestiona_datos_personales_privacidad',
+        'p25_controla_perfiles_accesos_monitoreo',
+        'p26_medidas_continuidad_respaldo_incidentes',
+        'p27_perfiles_roles_datos_tecnologia',
+        'p28_funcionarios_certificados_capacitados',
+        'p29_articula_trabajo_interdisciplinario',
+        'p30_promueve_nuevas_iniciativas_ia',
+        'p31_participa_redes_ecosistema_ia',
+        'p32_piloto_ia_implementado',
+        'p33_procesos_reglas_negocio_claras',
+        'p34_mide_reporta_resultados_ia',
+        'p35_gestiona_cambio_organizacional',
+        'p36_mas_de_un_sistema_ia_funcionamiento',
+        'p37_mide_efectos_sistemas_ia',
+        'p38_implementa_modelos_predictivos_avanzados',
         'autoriza_tratamiento_datos_personales',
-        // Anexo. Carta de manifestación de interés y compromiso institucional
-        'carta_compromiso_path',
     ];
 
     protected $casts = [
-        'declara_veracidad' => 'boolean',
-        'entiende_no_seleccion_automatica' => 'boolean',
-        'autoriza_verificacion_info' => 'boolean',
-        'acepta_formalizar_compromisos' => 'boolean',
         'autoriza_tratamiento_datos_personales' => 'boolean',
     ];
 
@@ -116,26 +136,16 @@ class Postulacion extends Model
         static::saving(function (Postulacion $postulacion) {
             $total = 0;
 
-            foreach (self::DIMENSIONES as $dimension => $campos) {
+            foreach (self::AMBITOS as $ambito => $campos) {
                 $subtotal = 0;
                 foreach ($campos as $campo) {
                     $subtotal += (int) $postulacion->{$campo};
                 }
-                $postulacion->{'puntaje_' . strtolower($dimension)} = $subtotal;
+                $postulacion->{'puntaje_' . strtolower($ambito)} = $subtotal;
                 $total += $subtotal;
             }
 
             $postulacion->puntaje_total = $total;
         });
-    }
-
-    public function equipoMiembros()
-    {
-        return $this->hasMany(PostulacionEquipoMiembro::class)->orderBy('orden');
-    }
-
-    public function responsableComunicacion()
-    {
-        return $this->equipoMiembros->firstWhere('orden', 1);
     }
 }

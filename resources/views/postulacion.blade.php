@@ -5,11 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Instrumento IA Estado 2026 | Formulario de Postulación</title>
+    <title>Autodiagnóstico Integrado | Postulación</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/escudo.png') }}">
     <!-- Fonts & UI -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&family=syne:600,700,800&family=plus-jakarta-sans:400,500,600,700" rel="stylesheet" />
+    <link
+        href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&family=syne:600,700,800&family=plus-jakarta-sans:400,500,600,700"
+        rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/shards-ui@2.1.0/dist/css/shards.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom Styles -->
@@ -34,71 +36,82 @@
                         <img src="{{ asset('img/Logo-Unicartagena2.png') }}" alt="Logo Unicartagena"
                             class="contenido-img-titulo" />
                     </div>
-                    <h3 class="contenido-formulario-title">Instrumento de Evaluación y Selección de Entidades
-                        Beneficiarias — Proyecto IA para el Estado</h3>
+                    <h3 class="contenido-formulario-title">Instrumento Autodiagnóstico Integrado — Proyecto IA para el
+                        Estado</h3>
                 </div>
-                <strong>Información complementaria para la evaluación y selección de entidades territoriales
-                    beneficiarias del Proyecto IA para el Estado.</strong>
-                <p style="text-align: justify">
-                    El Proyecto IA para el Estado, liderado por el Ministerio de Tecnologías de la Información y las
-                    Comunicaciones —MinTIC— en alianza con la Universidad de Cartagena, está orientado a fortalecer
-                    las capacidades de las entidades públicas territoriales para el uso, apropiación y
-                    aprovechamiento de herramientas de inteligencia artificial en la gestión pública, la toma de
-                    decisiones basada en datos y la generación de valor público en los territorios.
+
+                @if ($errors->any())
+                    @php
+                        $firstErrorField = array_key_first($errors->getMessages());
+                        $errorMessages = collect($errors->all());
+                        $errorCount = $errorMessages->count();
+                    @endphp
+                @endif
+
+                <strong>Términos y Política de Tratamiento de Datos</strong>
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    El Ministerio / Fondo Único de TIC se permite solicitar autorización para realizar el
+                    tratamiento de sus datos personales, la cual tiene como finalidad: gestionar el proceso de
+                    convocatoria, postulación, evaluación, selección, comunicación, seguimiento y eventual
+                    acompañamiento de las entidades territoriales beneficiarias del Proyecto IA para el
+                    Estado, y compartir información con aliados estratégicos en la ejecución técnica que
+                    facilitarán las actividades del proyecto. Para tal fin, usted reconoce que el registro y
+                    autorización para el tratamiento de su información personal lo realiza de manera
+                    voluntaria y que conoce los derechos que detenta, especialmente a conocer, actualizar y
+                    rectificar su información personal, revocar la autorización y solicitar la supresión del
+                    dato, los cuales podrá ejercer a través de <a href="mailto:minticresponde@mintic.gov.co"
+                        style="color:#1976d2;">minticresponde@mintic.gov.co</a>, la línea telefónica gratuita
+                    nacional 01-800-0914014 o en el Punto de Atención al Ciudadano ubicado en el
+                    Edificio Murillo Toro, carrera 8 a entre calles 12 y 13 en Bogotá, Colombia. La información
+                    suministrada será tratada por el Ministerio/Fondo Único de Tecnologías de la Información y
+                    las Comunicaciones como responsable del tratamiento, de acuerdo con la Ley 1581 de 2012 y
+                    la Política de Tratamiento de Datos Personales, descrita en la Resolución 2238 de 2024 del
+                    Ministerio de TIC, o aquella que la modifique, derogue o sustituya, la cual puede
+                    consultar en <a
+                        href="https://www.mintic.gov.co/portal/inicio/Secciones-auxiliares/Politicas/2627:Politicas-de-Privacidad-y-Condiciones-de-Uso"
+                        target="_blank"
+                        style="color:#1976d2;">https://www.mintic.gov.co/portal/inicio/Secciones-auxiliares/Politicas/2627:Politicas-de-Privacidad-y-Condiciones-de-Uso</a>
                 </p>
-                <p style="text-align: justify">
-                    La información solicitada en este formulario será utilizada como insumo para aplicar las
-                    dimensiones de evaluación definidas en la estrategia territorial de masificación: categoría
-                    territorial y capacidad institucional; conectividad y capacidad tecnológica; experiencia previa
-                    en Gobierno Digital; voluntad política y compromiso institucional; y potencial de impacto
-                    territorial.
+                <p style="margin-bottom: 10px; text-align: justify;">Autorización de tratamiento de datos –
+                    Universidad de Cartagena (UdeC)
+                    Adicionalmente, el postulante manifiesta que ha leído y acepta los Términos de Uso y el
+                    Aviso de Privacidad de la Universidad de Cartagena (UdeC) y autoriza el tratamiento de sus
+                    datos personales por parte de UdeC, en calidad de responsable del tratamiento, para las
+                    siguientes finalidades: gestionar la postulación, verificación de requisitos, evaluación y
+                    selección, participación en el proyecto, seguimiento y acompañamiento, comunicaciones
+                    informativas y operativas, control de calidad del servicio, fines estadísticos e
+                    institucionales, seguridad de la información y cumplimiento de obligaciones legales y
+                    contractuales, así como la transmisión y/o transferencia a aliados tecnológicos y
+                    académicos estrictamente necesarios para la ejecución del proyecto y bajo acuerdos de
+                    protección de datos. El titular podrá ejercer sus derechos de conocer, actualizar,
+                    rectificar y suprimir sus datos, así como revocar la autorización, mediante el correo <a
+                        href="mailto:datospersonales@unicartagena.edu.co"
+                        style="color:#1976d2;">datospersonales@unicartagena.edu.co</a>, o de manera presencial
+                    en la Oficina Asesora de Planeación – Datos Personales, Cra. 6 No.
+                    36-100, Centro de Cartagena de Indias, CP 130001, Bolívar, Colombia, PBX (+57) 3164390360
+                    ext. 165. La política de tratamiento de datos de UdeC puede consultarse en <a
+                        href="https://www.unicartagena.edu.co/proteccion-de-datos" target="_blank"
+                        style="color:#1976d2;">https://www.unicartagena.edu.co/proteccion-de-datos</a>.
+                    UdeC realizará el tratamiento conforme a la Ley 1581 de 2012, sus decretos reglamentarios
+                    y las demás normas aplicables.
                 </p>
-                <p style="text-align: justify">
-                    El diligenciamiento de este formulario <strong>no implica la selección automática</strong> de la
-                    entidad como beneficiaria del proyecto. La información registrada será revisada y podrá ser
-                    verificada por el equipo del proyecto, conforme a los criterios definidos para la convocatoria.
-                </p>
-                <p style="text-align: justify">
-                    Debe ser diligenciado por el punto focal designado o por una persona que conozca la situación
-                    institucional de la entidad, con información veraz, verificable y completa. La carta de
-                    manifestación de interés y compromiso institucional debe adjuntarse en formato PDF y estar
-                    suscrita por el alcalde, gobernador, representante legal o funcionario delegado con capacidad de
-                    comprometer institucionalmente a la entidad.
-                </p>
+                <div class="form-group form-check mb-2">
+                    <input type="checkbox" form="formulario-postulacion"
+                        class="form-check-input @error('autoriza_tratamiento_datos_personales') is-invalid @enderror"
+                        id="autoriza_tratamiento_datos_personales" name="autoriza_tratamiento_datos_personales"
+                        value="1" {{ old('autoriza_tratamiento_datos_personales') ? 'checked' : '' }} required>
+                    <label class="form-check-label" for="autoriza_tratamiento_datos_personales">
+                        <strong>Autorizo el tratamiento de mis datos personales conforme a lo descrito (*)</strong>
+                    </label>
+                    @error('autoriza_tratamiento_datos_personales')
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
 
-            @if ($errors->any())
-                @php
-                    $firstErrorField = array_key_first($errors->getMessages());
-                    $errorMessages = collect($errors->all());
-                    $errorCount = $errorMessages->count();
-                @endphp
-            @endif
-
             <form id="formulario-postulacion" method="POST" action="{{ route('postulacion.store') }}"
-                enctype="multipart/form-data" class="needs-validation visible" novalidate>
+                enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
-
-                <div class="annex-download-card">
-                    <div class="annex-download-icon" aria-hidden="true">
-                        <i class="fas fa-file-signature"></i>
-                    </div>
-                    <div class="annex-download-content">
-                        <span class="annex-download-kicker">Documento requerido</span>
-                        <h5>Anexo. Carta de manifestación de interés y compromiso institucional</h5>
-                        <p>
-                            Antes de continuar con el registro, descargue el anexo oficial, diligéncielo con la
-                            información de la entidad y gestione la firma de la autoridad competente o del funcionario
-                            delegado. Más adelante deberá cargar este documento en formato PDF, debidamente diligenciado
-                            y firmado, para completar la postulación.
-                        </p>
-                        <a href="{{ asset('Anexo - Carta de compromiso Convocatoria - Selección Proyecto IA para el Estado - 2026.docx') }}"
-                            class="annex-download-button" download>
-                            <i class="fas fa-download"></i>
-                            Descargar anexo
-                        </a>
-                    </div>
-                </div>
 
                 <div class="steps-progress" id="steps-progress">
                     <div class="step-connector"></div>
@@ -112,23 +125,27 @@
                     </div>
                     <div class="step-item" data-step="3">
                         <div class="step-dot"><span>3</span></div>
-                        <div class="step-label">D1-D2</div>
+                        <div class="step-label">Ámbito 1</div>
                     </div>
                     <div class="step-item" data-step="4">
                         <div class="step-dot"><span>4</span></div>
-                        <div class="step-label">D3</div>
+                        <div class="step-label">Ámbito 2</div>
                     </div>
                     <div class="step-item" data-step="5">
                         <div class="step-dot"><span>5</span></div>
-                        <div class="step-label">D4-D5</div>
+                        <div class="step-label">Ámbito 3</div>
                     </div>
                     <div class="step-item" data-step="6">
                         <div class="step-dot"><span>6</span></div>
-                        <div class="step-label">Declaraciones</div>
+                        <div class="step-label">Ámbito 4</div>
                     </div>
                     <div class="step-item" data-step="7">
                         <div class="step-dot"><span>7</span></div>
-                        <div class="step-label">Anexo</div>
+                        <div class="step-label">Ámbito 5</div>
+                    </div>
+                    <div class="step-item" data-step="8">
+                        <div class="step-dot"><span>8</span></div>
+                        <div class="step-label">Ámbito 6</div>
                     </div>
                 </div>
 
@@ -157,11 +174,12 @@
                         </div>
                         <div class="col-12 col-md-6 mb-3">
                             <label for="tipo_entidad">Tipo de entidad *</label>
-                            <select class="form-control @error('tipo_entidad') is-invalid @enderror"
-                                id="tipo_entidad" name="tipo_entidad" required>
+                            <select class="form-control @error('tipo_entidad') is-invalid @enderror" id="tipo_entidad"
+                                name="tipo_entidad" required>
                                 <option value="">Seleccione...</option>
                                 @foreach (config('instrumento.tipo_entidad') as $opcion)
-                                    <option {{ old('tipo_entidad') == $opcion ? 'selected' : '' }}>{{ $opcion }}</option>
+                                    <option {{ old('tipo_entidad') == $opcion ? 'selected' : '' }}>{{ $opcion }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('tipo_entidad')
@@ -173,8 +191,8 @@
                     <div class="row">
                         <div class="col-12 col-md-4 mb-3">
                             <label for="departamento">Departamento *</label>
-                            <select class="form-control @error('departamento') is-invalid @enderror"
-                                id="departamento" name="departamento" required>
+                            <select class="form-control @error('departamento') is-invalid @enderror" id="departamento"
+                                name="departamento" required>
                                 <option value="">Seleccione...</option>
                             </select>
                             @error('departamento')
@@ -197,7 +215,8 @@
                                 id="categoria_territorial" name="categoria_territorial" required>
                                 <option value="">Seleccione...</option>
                                 @foreach (config('instrumento.categoria_territorial') as $opcion)
-                                    <option {{ old('categoria_territorial') == $opcion ? 'selected' : '' }}>{{ $opcion }}</option>
+                                    <option {{ old('categoria_territorial') == $opcion ? 'selected' : '' }}>
+                                        {{ $opcion }}</option>
                                 @endforeach
                             </select>
                             @error('categoria_territorial')
@@ -245,7 +264,8 @@
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="nombres_apellidos">Nombres y apellidos completos *</label>
-                            <input type="text" class="form-control @error('nombres_apellidos') is-invalid @enderror"
+                            <input type="text"
+                                class="form-control @error('nombres_apellidos') is-invalid @enderror"
                                 id="nombres_apellidos" name="nombres_apellidos"
                                 value="{{ old('nombres_apellidos') }}" required>
                             @error('nombres_apellidos')
@@ -258,7 +278,8 @@
                                 id="tipo_documento" name="tipo_documento" required>
                                 <option value="">Seleccione...</option>
                                 @foreach (config('instrumento.tipo_documento') as $opcion)
-                                    <option {{ old('tipo_documento') == $opcion ? 'selected' : '' }}>{{ $opcion }}</option>
+                                    <option {{ old('tipo_documento') == $opcion ? 'selected' : '' }}>
+                                        {{ $opcion }}</option>
                                 @endforeach
                             </select>
                             @error('tipo_documento')
@@ -267,9 +288,10 @@
                         </div>
                         <div class="col-12 col-md-3 mb-3">
                             <label for="numero_documento">Número de documento *</label>
-                            <input type="text" class="form-control @error('numero_documento') is-invalid @enderror"
-                                id="numero_documento" name="numero_documento"
-                                value="{{ old('numero_documento') }}" required>
+                            <input type="text"
+                                class="form-control @error('numero_documento') is-invalid @enderror"
+                                id="numero_documento" name="numero_documento" value="{{ old('numero_documento') }}"
+                                required>
                             @error('numero_documento')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -279,19 +301,20 @@
                     <div class="row">
                         <div class="col-12 col-md-4 mb-3">
                             <label for="cargo">Cargo o rol que desempeña *</label>
-                            <input type="text" class="form-control @error('cargo') is-invalid @enderror" id="cargo"
-                                name="cargo" value="{{ old('cargo') }}" required>
+                            <input type="text" class="form-control @error('cargo') is-invalid @enderror"
+                                id="cargo" name="cargo" value="{{ old('cargo') }}" required>
                             @error('cargo')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-12 col-md-4 mb-3">
                             <label for="dependencia">Dependencia o área *</label>
-                            <select class="form-control @error('dependencia') is-invalid @enderror"
-                                id="dependencia" name="dependencia" required>
+                            <select class="form-control @error('dependencia') is-invalid @enderror" id="dependencia"
+                                name="dependencia" required>
                                 <option value="">Seleccione...</option>
                                 @foreach (config('instrumento.dependencia') as $opcion)
-                                    <option {{ old('dependencia') == $opcion ? 'selected' : '' }}>{{ $opcion }}</option>
+                                    <option {{ old('dependencia') == $opcion ? 'selected' : '' }}>{{ $opcion }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('dependencia')
@@ -304,7 +327,8 @@
                                 id="tipo_vinculacion" name="tipo_vinculacion" required>
                                 <option value="">Seleccione...</option>
                                 @foreach (config('instrumento.tipo_vinculacion') as $opcion)
-                                    <option {{ old('tipo_vinculacion') == $opcion ? 'selected' : '' }}>{{ $opcion }}</option>
+                                    <option {{ old('tipo_vinculacion') == $opcion ? 'selected' : '' }}>
+                                        {{ $opcion }}</option>
                                 @endforeach
                             </select>
                             @error('tipo_vinculacion')
@@ -345,27 +369,6 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12 mb-3">
-                            <label>¿Será el contacto de comunicación de la entidad para el proyecto? *</label>
-                            <div>
-                                @foreach (config('instrumento.es_contacto_comunicacion') as $opcion)
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input @error('es_contacto_comunicacion') is-invalid @enderror"
-                                            type="radio" name="es_contacto_comunicacion"
-                                            id="es_contacto_comunicacion_{{ $loop->index }}" value="{{ $opcion }}"
-                                            {{ old('es_contacto_comunicacion') == $opcion ? 'checked' : '' }} required>
-                                        <label class="form-check-label"
-                                            for="es_contacto_comunicacion_{{ $loop->index }}">{{ $opcion }}</label>
-                                    </div>
-                                @endforeach
-                                @error('es_contacto_comunicacion')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="step-nav">
                         <button type="button" class="btn-step btn-prev-step" id="btn-prev-2">
                             <i class="fas fa-arrow-left"></i> Anterior
@@ -376,24 +379,17 @@
                     </div>
                 </div>
 
-                {{-- ==================== PASO 3. Evaluación D1 + D2 ==================== --}}
+                {{-- ==================== PASO 3. Evaluación A1 ==================== --}}
                 <div class="form-step" data-step="3">
                     <div class="section-header">
                         <span class="section-badge">3</span>
                         <i class="fas fa-clipboard-check section-icon"></i>
-                        <span class="section-title">Evaluación — Categoría/Capacidad institucional y Conectividad</span>
+                        <span class="section-title">Ámbito 1. {{ config('instrumento.ambitos.A1.label') }}</span>
                     </div>
 
                     @include('partials.rubrica-legend')
 
-                    <h5 style="color:#184fa4;">D1. {{ config('instrumento.dimensiones.D1.label') }}</h5>
-                    @foreach (config('instrumento.dimensiones.D1.preguntas') as $pregunta)
-                        @include('partials.pregunta-rubrica', ['pregunta' => $pregunta])
-                    @endforeach
-
-                    <hr>
-                    <h5 style="color:#184fa4;">D2. {{ config('instrumento.dimensiones.D2.label') }}</h5>
-                    @foreach (config('instrumento.dimensiones.D2.preguntas') as $pregunta)
+                    @foreach (config('instrumento.ambitos.A1.preguntas') as $pregunta)
                         @include('partials.pregunta-rubrica', ['pregunta' => $pregunta])
                     @endforeach
 
@@ -407,15 +403,17 @@
                     </div>
                 </div>
 
-                {{-- ==================== PASO 4. Evaluación D3 ==================== --}}
+                {{-- ==================== PASO 4. Evaluación A2 ==================== --}}
                 <div class="form-step" data-step="4">
                     <div class="section-header">
                         <span class="section-badge">4</span>
-                        <i class="fas fa-laptop-code section-icon"></i>
-                        <span class="section-title">Evaluación — Experiencia previa en Gobierno Digital</span>
+                        <i class="fas fa-database section-icon"></i>
+                        <span class="section-title">Ámbito 2. {{ config('instrumento.ambitos.A2.label') }}</span>
                     </div>
 
-                    @foreach (config('instrumento.dimensiones.D3.preguntas') as $pregunta)
+                    @include('partials.rubrica-legend')
+
+                    @foreach (config('instrumento.ambitos.A2.preguntas') as $pregunta)
                         @include('partials.pregunta-rubrica', ['pregunta' => $pregunta])
                     @endforeach
 
@@ -429,22 +427,17 @@
                     </div>
                 </div>
 
-                {{-- ==================== PASO 5. Evaluación D4 + D5 ==================== --}}
+                {{-- ==================== PASO 5. Evaluación A3 ==================== --}}
                 <div class="form-step" data-step="5">
                     <div class="section-header">
                         <span class="section-badge">5</span>
-                        <i class="fas fa-bullseye section-icon"></i>
-                        <span class="section-title">Evaluación — Voluntad política e Impacto territorial</span>
+                        <i class="fas fa-laptop-code section-icon"></i>
+                        <span class="section-title">Ámbito 3. {{ config('instrumento.ambitos.A3.label') }}</span>
                     </div>
 
-                    <h5 style="color:#184fa4;">D4. {{ config('instrumento.dimensiones.D4.label') }}</h5>
-                    @foreach (config('instrumento.dimensiones.D4.preguntas') as $pregunta)
-                        @include('partials.pregunta-rubrica', ['pregunta' => $pregunta])
-                    @endforeach
+                    @include('partials.rubrica-legend')
 
-                    <hr>
-                    <h5 style="color:#184fa4;">D5. {{ config('instrumento.dimensiones.D5.label') }}</h5>
-                    @foreach (config('instrumento.dimensiones.D5.preguntas') as $pregunta)
+                    @foreach (config('instrumento.ambitos.A3.preguntas') as $pregunta)
                         @include('partials.pregunta-rubrica', ['pregunta' => $pregunta])
                     @endforeach
 
@@ -458,150 +451,19 @@
                     </div>
                 </div>
 
-                {{-- ==================== PASO 6. Participación y Declaraciones ==================== --}}
+                {{-- ==================== PASO 6. Evaluación A4 ==================== --}}
                 <div class="form-step" data-step="6">
                     <div class="section-header">
                         <span class="section-badge">6</span>
-                        <i class="fas fa-calendar-check section-icon"></i>
-                        <span class="section-title">Participación y declaraciones</span>
+                        <i class="fas fa-shield-alt section-icon"></i>
+                        <span class="section-title">Ámbito 4. {{ config('instrumento.ambitos.A4.label') }}</span>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12 mb-3">
-                            <label>¿La entidad fue seleccionada, entre 2024 y 2025, en Territorios IA o ciudades
-                                inteligentes de MinTIC? *</label>
-                            <select class="form-control @error('participo_convocatoria_previa') is-invalid @enderror"
-                                name="participo_convocatoria_previa" required>
-                                <option value="">Seleccione...</option>
-                                @foreach (config('instrumento.participo_convocatoria_previa') as $opcion)
-                                    <option {{ old('participo_convocatoria_previa') == $opcion ? 'selected' : '' }}>{{ $opcion }}</option>
-                                @endforeach
-                            </select>
-                            @error('participo_convocatoria_previa')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+                    @include('partials.rubrica-legend')
 
-                    <div class="row">
-                        <div class="col-12 col-md-6 mb-3">
-                            <label>Disponibilidad para actividades virtuales o presenciales durante el
-                                acompañamiento *</label>
-                            <select class="form-control @error('disponibilidad_actividades') is-invalid @enderror"
-                                name="disponibilidad_actividades" required>
-                                <option value="">Seleccione...</option>
-                                @foreach (config('instrumento.disponibilidad') as $opcion)
-                                    <option {{ old('disponibilidad_actividades') == $opcion ? 'selected' : '' }}>{{ $opcion }}</option>
-                                @endforeach
-                            </select>
-                            @error('disponibilidad_actividades')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-12 col-md-6 mb-3">
-                            <label>Disponibilidad para seguimiento, entrega de evidencias y evaluación *</label>
-                            <select class="form-control @error('disponibilidad_seguimiento') is-invalid @enderror"
-                                name="disponibilidad_seguimiento" required>
-                                <option value="">Seleccione...</option>
-                                @foreach (config('instrumento.disponibilidad') as $opcion)
-                                    <option {{ old('disponibilidad_seguimiento') == $opcion ? 'selected' : '' }}>{{ $opcion }}</option>
-                                @endforeach
-                            </select>
-                            @error('disponibilidad_seguimiento')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <hr>
-                    <h5 style="color:#184fa4;">Declaraciones y autorización</h5>
-
-                    @php
-                        $declaraciones = [
-                            'declara_veracidad' => 'La entidad declara que la información registrada en este formulario es veraz, completa y corresponde a la situación institucional conocida al momento del diligenciamiento.',
-                            'entiende_no_seleccion_automatica' => 'La entidad entiende que el diligenciamiento de este formulario no implica la selección automática como beneficiaria del Proyecto IA para el Estado.',
-                            'autoriza_verificacion_info' => 'La entidad autoriza al equipo del Proyecto IA para el Estado a revisar, validar y contrastar la información registrada con fuentes públicas o institucionales disponibles, únicamente para efectos del proceso de evaluación y selección.',
-                            'acepta_formalizar_compromisos' => 'La entidad acepta que, en caso de resultar seleccionada, deberá formalizar los compromisos de participación, designar su equipo de trabajo y atender la ruta de acompañamiento definida por el proyecto.',
-                        ];
-                    @endphp
-
-                    @foreach ($declaraciones as $campo => $texto)
-                        <div class="form-group form-check mb-3">
-                            <input type="checkbox" class="form-check-input @error($campo) is-invalid @enderror"
-                                id="{{ $campo }}" name="{{ $campo }}" value="1"
-                                {{ old($campo) ? 'checked' : '' }} required>
-                            <label class="form-check-label" for="{{ $campo }}">{{ $texto }} (*Acepto)</label>
-                            @error($campo)
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    @foreach (config('instrumento.ambitos.A4.preguntas') as $pregunta)
+                        @include('partials.pregunta-rubrica', ['pregunta' => $pregunta])
                     @endforeach
-
-                    <div id="terminos-condiciones-block" class="mb-4 p-3 rounded shadow-sm bg-white"
-                        style="max-width:700px;margin:auto;">
-                        <h4 class="mb-2 font-bold">Términos y Política de Tratamiento de Datos</h4>
-
-                        <p style="margin-bottom: 10px; text-align: justify;">
-                            El Ministerio / Fondo Único de TIC se permite solicitar autorización para realizar el
-                            tratamiento de sus datos personales, la cual tiene como finalidad: gestionar el proceso de
-                            convocatoria, postulación, evaluación, selección, comunicación, seguimiento y eventual
-                            acompañamiento de las entidades territoriales beneficiarias del Proyecto IA para el
-                            Estado, y compartir información con aliados estratégicos en la ejecución técnica que
-                            facilitarán las actividades del proyecto. Para tal fin, usted reconoce que el registro y
-                            autorización para el tratamiento de su información personal lo realiza de manera
-                            voluntaria y que conoce los derechos que detenta, especialmente a conocer, actualizar y
-                            rectificar su información personal, revocar la autorización y solicitar la supresión del
-                            dato, los cuales podrá ejercer a través de <a
-                                href="mailto:minticresponde@mintic.gov.co"
-                                style="color:#1976d2;">minticresponde@mintic.gov.co</a>, la línea telefónica gratuita
-                            nacional 01-800-0914014 o en el Punto de Atención al Ciudadano ubicado en el
-                            Edificio Murillo Toro, carrera 8 a entre calles 12 y 13 en Bogotá, Colombia. La información
-                            suministrada será tratada por el Ministerio/Fondo Único de Tecnologías de la Información y
-                            las Comunicaciones como responsable del tratamiento, de acuerdo con la Ley 1581 de 2012 y
-                            la Política de Tratamiento de Datos Personales, descrita en la Resolución 2238 de 2024 del
-                            Ministerio de TIC, o aquella que la modifique, derogue o sustituya, la cual puede
-                            consultar en <a
-                                href="https://www.mintic.gov.co/portal/inicio/Secciones-auxiliares/Politicas/2627:Politicas-de-Privacidad-y-Condiciones-de-Uso"
-                                target="_blank"
-                                style="color:#1976d2;">https://www.mintic.gov.co/portal/inicio/Secciones-auxiliares/Politicas/2627:Politicas-de-Privacidad-y-Condiciones-de-Uso</a>
-                        </p>
-                        <hr>
-                        <p style="margin-bottom: 10px; text-align: justify;">Autorización de tratamiento de datos –
-                            Universidad de Cartagena (UdeC)
-                            Adicionalmente, el postulante manifiesta que ha leído y acepta los Términos de Uso y el
-                            Aviso de Privacidad de la Universidad de Cartagena (UdeC) y autoriza el tratamiento de sus
-                            datos personales por parte de UdeC, en calidad de responsable del tratamiento, para las
-                            siguientes finalidades: gestionar la postulación, verificación de requisitos, evaluación y
-                            selección, participación en el proyecto, seguimiento y acompañamiento, comunicaciones
-                            informativas y operativas, control de calidad del servicio, fines estadísticos e
-                            institucionales, seguridad de la información y cumplimiento de obligaciones legales y
-                            contractuales, así como la transmisión y/o transferencia a aliados tecnológicos y
-                            académicos estrictamente necesarios para la ejecución del proyecto y bajo acuerdos de
-                            protección de datos. El titular podrá ejercer sus derechos de conocer, actualizar,
-                            rectificar y suprimir sus datos, así como revocar la autorización, mediante el correo <a
-                                href="mailto:datospersonales@unicartagena.edu.co"
-                                style="color:#1976d2;">datospersonales@unicartagena.edu.co</a>, o de manera presencial
-                            en la Oficina Asesora de Planeación – Datos Personales, Cra. 6 No.
-                            36-100, Centro de Cartagena de Indias, CP 130001, Bolívar, Colombia, PBX (+57) 3164390360
-                            ext. 165. La política de tratamiento de datos de UdeC puede consultarse en <a
-                                href="https://www.unicartagena.edu.co/proteccion-de-datos" target="_blank"
-                                style="color:#1976d2;">https://www.unicartagena.edu.co/proteccion-de-datos</a>.
-                            UdeC realizará el tratamiento conforme a la Ley 1581 de 2012, sus decretos reglamentarios
-                            y las demás normas aplicables.
-                        </p>
-                        <div class="form-group form-check mb-2">
-                            <input type="checkbox" style="width: 30px"
-                                class="form-check-input-term @error('autoriza_tratamiento_datos_personales') is-invalid @enderror"
-                                id="autoriza_tratamiento_datos_personales" name="autoriza_tratamiento_datos_personales"
-                                value="1" {{ old('autoriza_tratamiento_datos_personales') ? 'checked' : '' }} required>
-                            <label class="form-check-label" for="autoriza_tratamiento_datos_personales">
-                                Autorizo el tratamiento de mis datos personales conforme a lo descrito (*)
-                            </label>
-                            @error('autoriza_tratamiento_datos_personales')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
 
                     <div class="step-nav">
                         <button type="button" class="btn-step btn-prev-step" id="btn-prev-6">
@@ -613,75 +475,46 @@
                     </div>
                 </div>
 
-                {{-- ==================== PASO 7. Anexo: carta y equipo de trabajo ==================== --}}
+                {{-- ==================== PASO 7. Evaluación A5 ==================== --}}
                 <div class="form-step" data-step="7">
                     <div class="section-header">
                         <span class="section-badge">7</span>
-                        <i class="fas fa-file-signature section-icon"></i>
-                        <span class="section-title">Anexo — Carta de compromiso y equipo de trabajo</span>
+                        <i class="fas fa-users-cog section-icon"></i>
+                        <span class="section-title">Ámbito 5. {{ config('instrumento.ambitos.A5.label') }}</span>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12 col-md-8 mb-3">
-                            <label for="carta_compromiso">Carta de manifestación de interés y compromiso
-                                institucional (firmada) *</label>
-                            <input type="file"
-                                class="form-control-file @error('carta_compromiso') is-invalid @enderror"
-                                id="carta_compromiso" name="carta_compromiso" accept=".pdf" required>
-                            <small class="form-text text-muted">
-                                Debe estar suscrita por el alcalde, gobernador, representante legal o funcionario
-                                delegado. Formato: PDF. Tamaño máximo: 5 MB.
-                            </small>
-                            @error('carta_compromiso')
-                                <div class="invalid-feedback d-block">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+                    @include('partials.rubrica-legend')
 
-                    <hr>
-                    <h5 style="color:#184fa4;">Equipo de trabajo (máximo 4 personas)</h5>
-                    <p style="color:#555;">La primera persona es el <strong>Responsable de Comunicación</strong> del
-                        equipo, obligatoria. Puedes agregar hasta 3 integrantes adicionales.</p>
-
-                    <div id="equipo-rows"></div>
-
-                    <button type="button" class="btn-step btn-secondary-step" id="btn-add-equipo">
-                        <i class="fas fa-plus"></i> Agregar integrante
-                    </button>
-
-                    <template id="equipo-row-template">
-                        <div class="row equipo-row mb-3 p-3" style="border:1px solid #e0e0e0;border-radius:8px;">
-                            <div class="col-12 d-flex justify-content-between align-items-center mb-2">
-                                <strong class="equipo-row-title"></strong>
-                                <button type="button" class="btn-step btn-remove-equipo" style="display:none;">
-                                    <i class="fas fa-trash"></i> Quitar
-                                </button>
-                            </div>
-                            <div class="col-12 col-md-6 mb-2">
-                                <label>Nombre completo</label>
-                                <input type="text" class="form-control equipo-nombre_completo">
-                            </div>
-                            <div class="col-12 col-md-6 mb-2">
-                                <label>Cargo</label>
-                                <input type="text" class="form-control equipo-cargo">
-                            </div>
-                            <div class="col-12 col-md-4 mb-2">
-                                <label>Dependencia</label>
-                                <input type="text" class="form-control equipo-dependencia">
-                            </div>
-                            <div class="col-12 col-md-4 mb-2">
-                                <label>Correo institucional</label>
-                                <input type="email" class="form-control equipo-correo_institucional">
-                            </div>
-                            <div class="col-12 col-md-4 mb-2">
-                                <label>Teléfono</label>
-                                <input type="text" class="form-control equipo-telefono">
-                            </div>
-                        </div>
-                    </template>
+                    @foreach (config('instrumento.ambitos.A5.preguntas') as $pregunta)
+                        @include('partials.pregunta-rubrica', ['pregunta' => $pregunta])
+                    @endforeach
 
                     <div class="step-nav">
                         <button type="button" class="btn-step btn-prev-step" id="btn-prev-7">
+                            <i class="fas fa-arrow-left"></i> Anterior
+                        </button>
+                        <button type="button" class="btn-step btn-next-step" id="btn-next-7" disabled>
+                            Continuar <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                {{-- ==================== PASO 8. Evaluación A6 ==================== --}}
+                <div class="form-step" data-step="8">
+                    <div class="section-header">
+                        <span class="section-badge">8</span>
+                        <i class="fas fa-bullseye section-icon"></i>
+                        <span class="section-title">Ámbito 6. {{ config('instrumento.ambitos.A6.label') }}</span>
+                    </div>
+
+                    @include('partials.rubrica-legend')
+
+                    @foreach (config('instrumento.ambitos.A6.preguntas') as $pregunta)
+                        @include('partials.pregunta-rubrica', ['pregunta' => $pregunta])
+                    @endforeach
+
+                    <div class="step-nav">
+                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-8">
                             <i class="fas fa-arrow-left"></i> Anterior
                         </button>
                         <button type="submit" class="btn btn-primary btn-submit-step" id="btn-submit">
@@ -697,9 +530,32 @@
         document.addEventListener("DOMContentLoaded", function() {
             const formulario = document.getElementById('formulario-postulacion');
 
+            // ----- Gate: el wizard solo aparece tras aceptar términos y condiciones -----
+            const terminosCheckbox = document.getElementById('autoriza_tratamiento_datos_personales');
+
+            function actualizarVisibilidadFormulario() {
+                if (terminosCheckbox.checked) {
+                    formulario.classList.add('visible');
+                } else {
+                    formulario.classList.remove('visible');
+                }
+            }
+
+            terminosCheckbox.addEventListener('change', function() {
+                actualizarVisibilidadFormulario();
+                if (terminosCheckbox.checked) {
+                    setTimeout(() => formulario.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    }), 50);
+                }
+            });
+
+            actualizarVisibilidadFormulario();
+
             // ----- Wizard: navegación por pasos -----
             let currentStep = 1;
-            const TOTAL_STEPS = 7;
+            const TOTAL_STEPS = 8;
 
             function goToStep(n) {
                 const steps = document.querySelectorAll('.form-step');
@@ -737,21 +593,35 @@
                 return firstInvalid;
             }
 
+            // Verifica en el servidor si una entidad ya tiene postulación registrada.
+            async function verificarEntidadRegistrada(nombreEntidad) {
+                try {
+                    const res = await fetch(
+                        `{{ url('/postulaciones/check-documento') }}?nombre_entidad=${encodeURIComponent(nombreEntidad)}`
+                    );
+                    const data = await res.json();
+                    return data.exists;
+                } catch (e) {
+                    return false;
+                }
+            }
+
             // Verifica en el servidor si la entidad o el documento ya están registrados.
             // Se ejecuta al avanzar del Paso 2 (ya se conocen nombre_entidad y numero_documento).
             async function checkDuplicado() {
                 const numero = document.getElementById('numero_documento').value.trim();
                 const entidad = document.getElementById('nombre_entidad').value.trim();
+                const correo = document.getElementById('correo_institucional').value.trim();
                 try {
                     const res = await fetch(
-                        `{{ url('/postulaciones/check-documento') }}?numero_documento=${encodeURIComponent(numero)}&nombre_entidad=${encodeURIComponent(entidad)}`
+                        `{{ url('/postulaciones/check-documento') }}?numero_documento=${encodeURIComponent(numero)}&nombre_entidad=${encodeURIComponent(entidad)}&correo_institucional=${encodeURIComponent(correo)}`
                     );
                     const data = await res.json();
                     if (data.exists) {
                         Swal.fire({
                             icon: 'error',
                             title: 'Postulación ya registrada',
-                            text: 'Ya existe una postulación registrada con esta entidad o este número de documento.',
+                            text: 'Ya existe una postulación registrada con este correo o este número de documento.',
                             confirmButtonText: 'Entendido'
                         });
                         return false;
@@ -788,7 +658,10 @@
                         if (invalid) {
                             shakeBtn(nextBtn.id);
                             const question = invalid.closest('.row, .col-12') || invalid;
-                            question.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            question.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center'
+                            });
                             invalid.reportValidity();
                             return;
                         }
@@ -818,22 +691,38 @@
 
             for (let i = 1; i <= TOTAL_STEPS; i++) wireStep(i);
 
+            // Última pregunta (Ámbito 6) + checkbox de términos validan antes de permitir el envío del formulario.
+            const btnSubmit = document.getElementById('btn-submit');
+            const lastStepEl = document.querySelector(`.form-step[data-step="${TOTAL_STEPS}"]`);
+            btnSubmit.addEventListener('click', function(e) {
+                const invalid = validateStep(lastStepEl) ||
+                    (!terminosCheckbox.checkValidity() ? terminosCheckbox : null);
+                if (invalid) {
+                    e.preventDefault();
+                    shakeBtn(btnSubmit.id);
+                    const question = invalid.closest('.row, .col-12') || invalid;
+                    question.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                    invalid.reportValidity();
+                }
+            });
+
             formulario.addEventListener('submit', function(e) {
                 const submitBtn = formulario.querySelector('button[type="submit"]');
-                if (formulario.checkValidity()) {
-                    submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Enviando...';
-                    Swal.fire({
-                        title: 'Enviando postulación...',
-                        text: 'Por favor espera mientras procesamos tu postulación.',
-                        icon: 'info',
-                        allowOutsideClick: false,
-                        showConfirmButton: false,
-                        didOpen: () => {
-                            Swal.showLoading();
-                        }
-                    });
-                }
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Enviando...';
+                Swal.fire({
+                    title: 'Enviando postulación...',
+                    text: 'Por favor espera mientras procesamos tu postulación.',
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    showConfirmButton: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
             });
 
             // ----- Departamento y Municipio -----
@@ -926,11 +815,22 @@
                     el.type = 'button';
                     el.className = 'list-group-item list-group-item-action';
                     el.textContent = `${item.NOMBRE} (${item.DM_INSTITUCION_COD_INSTITUCION})`;
-                    el.addEventListener('mousedown', function(e) {
+                    el.addEventListener('mousedown', async function(e) {
                         inputEntidad.value = item.NOMBRE;
                         suggestionsBox.innerHTML = '';
                         suggestionsBox.style.display = 'none';
                         inputEntidad.dispatchEvent(new Event('input'));
+
+                        const yaRegistrada = await verificarEntidadRegistrada(item
+                            .NOMBRE);
+                        if (yaRegistrada) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Entidad ya registrada',
+                                text: 'Esta entidad ya tiene una postulación registrada. No es posible registrarla nuevamente.',
+                                confirmButtonText: 'Entendido'
+                            });
+                        }
                     });
                     suggestionsBox.appendChild(el);
                 });
@@ -953,68 +853,6 @@
             window.addEventListener('resize', syncSuggestionWidth);
             syncSuggestionWidth();
 
-            // ----- Equipo de trabajo (repetible, máx. 4, fila 1 obligatoria) -----
-            const equipoRows = document.getElementById('equipo-rows');
-            const equipoTemplate = document.getElementById('equipo-row-template');
-            const btnAddEquipo = document.getElementById('btn-add-equipo');
-            const MAX_EQUIPO = 4;
-            let equipoCount = 0;
-
-            function addEquipoRow() {
-                if (equipoCount >= MAX_EQUIPO) return;
-                const index = equipoCount;
-                const clone = equipoTemplate.content.cloneNode(true);
-                const rowEl = clone.querySelector('.equipo-row');
-
-                const titulo = clone.querySelector('.equipo-row-title');
-                titulo.textContent = index === 0 ?
-                    'Integrante 1 — Responsable de Comunicación (obligatorio)' :
-                    `Integrante ${index + 1}`;
-
-                const campos = ['nombre_completo', 'cargo', 'dependencia', 'correo_institucional', 'telefono'];
-                campos.forEach(campo => {
-                    const input = clone.querySelector(`.equipo-${campo}`);
-                    input.name = `equipo[${index}][${campo}]`;
-                    input.id = `equipo_${index}_${campo}`;
-                    if (index === 0) input.required = true;
-                });
-
-                const removeBtn = clone.querySelector('.btn-remove-equipo');
-                if (index === 0) {
-                    removeBtn.style.display = 'none';
-                } else {
-                    removeBtn.style.display = '';
-                    removeBtn.addEventListener('click', function() {
-                        rowEl.remove();
-                        equipoCount--;
-                        renumberEquipoRows();
-                        btnAddEquipo.disabled = equipoCount >= MAX_EQUIPO;
-                    });
-                }
-
-                equipoRows.appendChild(clone);
-                equipoCount++;
-                btnAddEquipo.disabled = equipoCount >= MAX_EQUIPO;
-            }
-
-            function renumberEquipoRows() {
-                const rows = equipoRows.querySelectorAll('.equipo-row');
-                const campos = ['nombre_completo', 'cargo', 'dependencia', 'correo_institucional', 'telefono'];
-                rows.forEach((rowEl, index) => {
-                    rowEl.querySelector('.equipo-row-title').textContent = index === 0 ?
-                        'Integrante 1 — Responsable de Comunicación (obligatorio)' :
-                        `Integrante ${index + 1}`;
-                    campos.forEach(campo => {
-                        const input = rowEl.querySelector(`.equipo-${campo}`);
-                        input.name = `equipo[${index}][${campo}]`;
-                        input.id = `equipo_${index}_${campo}`;
-                    });
-                });
-            }
-
-            btnAddEquipo.addEventListener('click', addEquipoRow);
-            addEquipoRow(); // Fila 1: Responsable de Comunicación, siempre presente.
-
             // SweetAlert para errores y éxito
             @if ($errors->any() && $errorCount > 0 && $errorCount <= 5)
                 let errorList = {!! json_encode($errorMessages) !!};
@@ -1025,7 +863,8 @@
                     html: errorList.map(e => `<div>${e}</div>`).join(''),
                     confirmButtonText: 'OK',
                 }).then(function() {
-                    let el = document.getElementsByName(fieldWithError)[0] || document.getElementById(fieldWithError);
+                    let el = document.getElementsByName(fieldWithError)[0] || document.getElementById(
+                        fieldWithError);
                     if (el) {
                         const step = el.closest('.form-step');
                         if (step) goToStep(parseInt(step.dataset.step, 10));

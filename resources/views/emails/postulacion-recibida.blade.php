@@ -30,8 +30,8 @@
         </h2>
         <div
             style="background:#f0f5ff;border-radius:10px;padding:12px 18px;margin:18px 0;font-size:1.01rem;color:#184fa4;border-left:5px solid #e9b121;">
-            Gracias por diligenciar el <strong>Formulario de Información Complementaria para la Selección de
-            Entidades Beneficiarias</strong> del Proyecto IA para el Estado.
+            Gracias por diligenciar el <strong>Instrumento Autodiagnóstico Integrado</strong> del Proyecto IA
+            para el Estado.
         </div>
         <p style="font-size:1.07rem;color:#363a46;margin-bottom:12px;line-height:1.7;text-align:left;">
             <strong>Entidad:</strong> {{ strtoupper($postulacion->nombre_entidad) }}
