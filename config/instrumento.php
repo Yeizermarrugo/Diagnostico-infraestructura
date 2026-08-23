@@ -71,9 +71,9 @@ return [
 
     'escala_ambitos' => [
         1 => 'Inicial',
-        2 => null,
-        3 => null,
-        4 => null,
+        2 => 'Gestionado',
+        3 => 'Definido',
+        4 => 'Avanzado',
         5 => 'Optimizado',
     ],
 

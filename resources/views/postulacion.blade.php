@@ -40,6 +40,46 @@
                         Estado</h3>
                 </div>
 
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    Este instrumento hace parte del <strong>Proyecto IA para el Estado</strong> y tiene como
+                    propósito identificar el nivel de madurez de la entidad en materia de <strong>datos e
+                        inteligencia artificial</strong>, a partir de seis ámbitos de evaluación: dirección y
+                    gobierno institucional, gestión de datos, base tecnológica, seguridad y privacidad,
+                    capacidades del equipo humano, y procesos y valor público.
+                </p>
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    <strong>Importante:</strong> a diferencia del diagnóstico diligenciado anteriormente, este
+                    instrumento <strong>no</strong> se responde por cada funcionario(a). Debe diligenciarse
+                    <strong>una sola vez por entidad</strong>, procurando que las respuestas reflejen su
+                    situación institucional real.
+                </p>
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    Por esta razón, recomendamos que su diligenciamiento sea coordinado por el punto focal de
+                    la entidad y que, cuando sea necesario, se consulte a las áreas de tecnología, planeación,
+                    datos, seguridad de la información, talento humano u otras dependencias que puedan aportar
+                    información para responder con precisión.
+                </p>
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    Cada criterio deberá valorarse en una escala de <strong>1 a 5</strong>, donde:<br>
+                    <strong>1 = Inicial | 2 = Gestionado | 3 = Definido | 4 = Avanzado | 5 =
+                        Optimizado</strong>
+                </p>
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    No será necesario adjuntar evidencias documentales. Sin embargo, agradecemos responder con
+                    la mayor objetividad posible, considerando si la entidad cuenta efectivamente con
+                    procesos, responsables, instrumentos o soportes que respalden cada valoración.
+                </p>
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    ⏱️ <strong>Tiempo estimado de diligenciamiento:</strong> entre 30 y 60 minutos.<br>
+                    🏛️ <strong>Se debe registrar una única respuesta por entidad.</strong>
+                </p>
+
+                <p style="margin-bottom: 10px; text-align: justify;">
+                    Los resultados permitirán orientar de manera más precisa el <strong>acompañamiento técnico
+                        y la ruta de fortalecimiento</strong> de cada entidad dentro del Proyecto IA para el
+                    Estado.
+                </p>
+
                 @if ($errors->any())
                     @php
                         $firstErrorField = array_key_first($errors->getMessages());

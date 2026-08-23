@@ -4,7 +4,7 @@
         mejor describa la situación actual de tu entidad.</p>
     <div class="legend-grid">
         @php
-            $legendColors = [1 => 'legend-item--n1', 5 => 'legend-item--n4'];
+            $legendColors = [1 => 'legend-item--n1', 2 => 'legend-item--n2', 3 => 'legend-item--n3', 4 => 'legend-item--n4', 5 => 'legend-item--n5'];
         @endphp
         @foreach (config('instrumento.escala_ambitos') as $nivel => $etiqueta)
             @if ($etiqueta)

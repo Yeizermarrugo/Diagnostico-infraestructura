@@ -134,6 +134,13 @@ body {
     width: 100%;
 }
 
+.contenido-formulario-inscripcion p strong {
+    display: inline;
+    font-size: inherit;
+    margin-bottom: 0;
+    width: auto;
+}
+
 .contenido-formulario-inscripcion p {
     font-size: 1rem;
     margin-bottom: 0;
@@ -901,10 +908,11 @@ hr {
     color: var(--c-text);
 }
 
-.legend-item--n4 .legend-badge { background: var(--c-primary); }
-.legend-item--n3 .legend-badge { background: var(--c-primary-mid); }
-.legend-item--n2 .legend-badge { background: var(--c-gold-dark); }
-.legend-item--n1 .legend-badge { background: var(--c-text-soft); }
+.legend-item--n1 .legend-badge { background: #8a97ac; }
+.legend-item--n2 .legend-badge { background: #6b84ab; }
+.legend-item--n3 .legend-badge { background: #4c71aa; }
+.legend-item--n4 .legend-badge { background: #2e5ea7; }
+.legend-item--n5 .legend-badge { background: var(--c-primary); }
 
 @media (max-width: 700px) {
     .legend-grid { grid-template-columns: repeat(2, 1fr); }
