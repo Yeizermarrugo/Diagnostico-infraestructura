@@ -1,25 +1,26 @@
 <?php
 
-use App\Http\Controllers\PostulacionController;
+use App\Http\Controllers\DiagnosticoController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('postulacion');
-})->name('postulacion.form');
+    return view('diagnostico');
+})->name('diagnostico.form');
 
-Route::post('/postulacion', [PostulacionController::class, 'store'])->name('postulacion.store');
-Route::get('/postulaciones/check-documento', [PostulacionController::class, 'checkDocumento'])->name('postulaciones.check-documento');
+Route::post('/diagnostico', [DiagnosticoController::class, 'store'])->name('diagnostico.store');
+Route::get('/diagnosticos/check-entidad', [DiagnosticoController::class, 'checkEntidad'])->name('diagnosticos.check-entidad');
 
 Route::get('/registro-pendiente', function () {
     return view('auth.pending-activation');
 })->name('registro.pendiente');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [PostulacionController::class, 'index'])->name('dashboard');
-    Route::get('/postulaciones/chart-data', [PostulacionController::class, 'chartData'])->name('postulaciones.chart-data');
-    Route::get('/postulaciones/search', [PostulacionController::class, 'search'])->name('postulaciones.search');
-    Route::get('/postulaciones/export/excel', [PostulacionController::class, 'exportExcel'])->name('postulaciones.export.excel');
+    Route::get('/dashboard', [DiagnosticoController::class, 'index'])->name('dashboard');
+    Route::get('/diagnosticos/chart-data', [DiagnosticoController::class, 'chartData'])->name('diagnosticos.chart-data');
+    Route::get('/diagnosticos/search', [DiagnosticoController::class, 'search'])->name('diagnosticos.search');
+    Route::get('/diagnosticos/export/excel', [DiagnosticoController::class, 'exportExcel'])->name('diagnosticos.export.excel');
+    Route::get('/diagnosticos/{diagnostico}/archivo', [DiagnosticoController::class, 'descargarArchivo'])->name('diagnosticos.descargar-archivo');
 });
 
 Route::middleware('auth')->group(function () {

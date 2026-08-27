@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Confirmación de postulación</title>
+    <title>Nuevo diagnóstico recibido</title>
 </head>
 
 <body style="font-family:'Instrument Sans',Arial,Helvetica,sans-serif;background:#f5f7fb;margin:0;padding:0;">
@@ -26,31 +26,29 @@
 
         <h2
             style="color:#184fa4;font-size:1.4rem;font-weight:700;margin-bottom:16px;text-align:center;letter-spacing:-0.5px;">
-            Hola {{ $postulacion->nombres_apellidos }},
+            Hola {{ $diagnostico->nombre_responsable }},
         </h2>
         <div
             style="background:#f0f5ff;border-radius:10px;padding:12px 18px;margin:18px 0;font-size:1.01rem;color:#184fa4;border-left:5px solid #e9b121;">
-            Gracias por diligenciar el <strong>Instrumento Autodiagnóstico Integrado</strong> del Proyecto IA
-            para el Estado.
+            Gracias por diligenciar el <strong>Formulario de Diagnóstico de Infraestructura Computacional en
+                Inteligencia Artificial y Big Data</strong> del Proyecto IA para el Estado.
         </div>
         <p style="font-size:1.07rem;color:#363a46;margin-bottom:12px;line-height:1.7;text-align:left;">
-            <strong>Entidad:</strong> {{ strtoupper($postulacion->nombre_entidad) }}
+            <strong>Entidad:</strong> {{ strtoupper($diagnostico->nombre_entidad) }}
         </p>
         <p style="font-size:1.07rem;color:#363a46;margin-bottom:12px;line-height:1.7;text-align:left;">
-            <strong>Cargo:</strong> {{ $postulacion->cargo }}
+            <strong>Cargo:</strong> {{ $diagnostico->cargo_responsable }}
         </p>
         <p style="font-size:1.07rem;color:#363a46;margin-bottom:20px;line-height:1.7;text-align:left;">
-            <strong>Correo:</strong> {{ $postulacion->correo_institucional }}
+            <strong>Fecha:</strong> {{ $diagnostico->created_at->setTimezone('America/Bogota')->format('d/m/Y H:i') }}
         </p>
         <p style="font-size:1.07rem;color:#363a46;margin-bottom:12px;line-height:1.7;text-align:left;">
-            La información registrada será revisada por el equipo del proyecto como parte del proceso de
-            evaluación y selección. Recuerde que el diligenciamiento de este formulario
-            <strong>no implica la selección automática</strong> de la entidad como beneficiaria. Una vez
-            finalizada la etapa de revisión, se informarán los resultados y pasos a seguir a través de los
-            canales oficiales del proyecto.
+            La información registrada permitirá dimensionar la demanda actual y futura de infraestructura
+            computacional del Proyecto IA para el Estado. Conserva este correo — te contactaremos a esta misma
+            dirección con novedades sobre el proceso.
         </p>
         <div style="font-size:1.15rem;font-weight:600;color:#e79d19;text-align:center;margin-top:24px;">
-            ¡Gracias por su interés en participar!
+            ¡Gracias por su participación!
         </div>
     </div>
 </body>

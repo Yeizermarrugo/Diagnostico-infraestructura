@@ -925,12 +925,12 @@ hr {
 /* ===================================================
    SWEETALERT — CONFIRMACIÓN DE ENVÍO
 =================================================== */
-.swal-postulacion-success {
+.swal-diagnostico-success {
     border-top: 6px solid var(--c-gold);
     border-radius: 16px !important;
 }
 
-.swal-postulacion-title {
+.swal-diagnostico-title {
     color: var(--c-primary) !important;
     font-weight: 700 !important;
     font-size: 1.35rem !important;
