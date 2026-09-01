@@ -568,6 +568,40 @@ hr {
 /* ===================================================
    STEPS PROGRESS BAR
 =================================================== */
+.steps-progress-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+}
+
+.steps-progress-meta #steps-progress-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    color: var(--c-text-soft);
+    white-space: nowrap;
+}
+
+.steps-progress-bar {
+    flex: 1;
+    height: 8px;
+    min-width: 80px;
+    border-radius: 4px;
+    background: var(--c-border);
+    border: 1px solid var(--c-border-soft);
+    overflow: hidden;
+}
+
+.steps-progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--c-primary-dark), var(--c-primary-mid));
+    border-radius: 3px;
+    transition: width 0.35s var(--ease);
+}
+
 .steps-progress {
     display: flex;
     align-items: flex-start;

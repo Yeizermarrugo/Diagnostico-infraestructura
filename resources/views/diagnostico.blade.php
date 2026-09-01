@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://unpkg.com/shards-ui@2.1.0/dist/css/shards.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="{{ asset('css/diagnostico.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/diagnostico.css') }}?v={{ filemtime(public_path('css/diagnostico.css')) }}">
     <!-- Vite Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -130,18 +130,19 @@
                 enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
 
+                <div class="steps-progress-meta" id="steps-progress-meta">
+                    <span id="steps-progress-text">Paso 1 de 7</span>
+                    <div class="steps-progress-bar"><div class="steps-progress-bar-fill" id="steps-progress-bar-fill"></div></div>
+                </div>
                 <div class="steps-progress" id="steps-progress">
                     <div class="step-connector"></div>
                     <div class="step-item active" data-step="1"><div class="step-dot"><span>1</span></div><div class="step-label">Entidad</div></div>
-                    <div class="step-item" data-step="2"><div class="step-dot"><span>2</span></div><div class="step-label">Infra I</div></div>
-                    <div class="step-item" data-step="3"><div class="step-dot"><span>3</span></div><div class="step-label">Infra II</div></div>
-                    <div class="step-item" data-step="4"><div class="step-dot"><span>4</span></div><div class="step-label">Proyectos IA</div></div>
-                    <div class="step-item" data-step="5"><div class="step-dot"><span>5</span></div><div class="step-label">Necesidades</div></div>
-                    <div class="step-item" data-step="6"><div class="step-dot"><span>6</span></div><div class="step-label">Integración</div></div>
-                    <div class="step-item" data-step="7"><div class="step-dot"><span>7</span></div><div class="step-label">Barreras</div></div>
-                    <div class="step-item" data-step="8"><div class="step-dot"><span>8</span></div><div class="step-label">Riesgos IA</div></div>
-                    <div class="step-item" data-step="9"><div class="step-dot"><span>9</span></div><div class="step-label">Obstáculos</div></div>
-                    <div class="step-item" data-step="10"><div class="step-dot"><span>10</span></div><div class="step-label">Cierre</div></div>
+                    <div class="step-item" data-step="2"><div class="step-dot"><span>2</span></div><div class="step-label">Infraestructura</div></div>
+                    <div class="step-item" data-step="3"><div class="step-dot"><span>3</span></div><div class="step-label">Proyectos IA</div></div>
+                    <div class="step-item" data-step="4"><div class="step-dot"><span>4</span></div><div class="step-label">Necesidades</div></div>
+                    <div class="step-item" data-step="5"><div class="step-dot"><span>5</span></div><div class="step-label">Integración</div></div>
+                    <div class="step-item" data-step="6"><div class="step-dot"><span>6</span></div><div class="step-label">Barreras</div></div>
+                    <div class="step-item" data-step="7"><div class="step-dot"><span>7</span></div><div class="step-label">Riesgos y cierre</div></div>
                 </div>
 
                 {{-- ==================== PASO 1. Identificación de la entidad ==================== --}}
@@ -284,21 +285,15 @@
                     </div>
                 </div>
 
-                @php
-                    $seccionII = config('diagnostico.secciones.II.preguntas');
-                    $seccionIIA = array_slice($seccionII, 0, 9); // P8-16
-                    $seccionIIB = array_slice($seccionII, 9); // P17-23
-                @endphp
-
-                {{-- ==================== PASO 2. Sección II (parte A) ==================== --}}
+                {{-- ==================== PASO 2. Sección II (completa) ==================== --}}
                 <div class="form-step" data-step="2">
                     <div class="section-header">
                         <span class="section-badge">2</span>
                         <i class="fas fa-server section-icon"></i>
-                        <span class="section-title">Sección II. {{ config('diagnostico.secciones.II.label') }} (1/2)</span>
+                        <span class="section-title">Sección II. {{ config('diagnostico.secciones.II.label') }}</span>
                     </div>
 
-                    @foreach ($seccionIIA as $pregunta)
+                    @foreach (config('diagnostico.secciones.II.preguntas') as $pregunta)
                         @include('partials.campo-diagnostico', ['pregunta' => $pregunta])
                     @endforeach
 
@@ -308,28 +303,10 @@
                     </div>
                 </div>
 
-                {{-- ==================== PASO 3. Sección II (parte B) ==================== --}}
+                {{-- ==================== PASO 3. Sección III ==================== --}}
                 <div class="form-step" data-step="3">
                     <div class="section-header">
                         <span class="section-badge">3</span>
-                        <i class="fas fa-network-wired section-icon"></i>
-                        <span class="section-title">Sección II. {{ config('diagnostico.secciones.II.label') }} (2/2)</span>
-                    </div>
-
-                    @foreach ($seccionIIB as $pregunta)
-                        @include('partials.campo-diagnostico', ['pregunta' => $pregunta])
-                    @endforeach
-
-                    <div class="step-nav">
-                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-3"><i class="fas fa-arrow-left"></i> Anterior</button>
-                        <button type="button" class="btn-step btn-next-step" id="btn-next-3" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                {{-- ==================== PASO 4. Sección III ==================== --}}
-                <div class="form-step" data-step="4">
-                    <div class="section-header">
-                        <span class="section-badge">4</span>
                         <i class="fas fa-robot section-icon"></i>
                         <span class="section-title">Sección III. {{ config('diagnostico.secciones.III.label') }}</span>
                     </div>
@@ -339,15 +316,15 @@
                     @endforeach
 
                     <div class="step-nav">
-                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-4"><i class="fas fa-arrow-left"></i> Anterior</button>
-                        <button type="button" class="btn-step btn-next-step" id="btn-next-4" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-3"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn-step btn-next-step" id="btn-next-3" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
-                {{-- ==================== PASO 5. Sección IV ==================== --}}
-                <div class="form-step" data-step="5">
+                {{-- ==================== PASO 4. Sección IV ==================== --}}
+                <div class="form-step" data-step="4">
                     <div class="section-header">
-                        <span class="section-badge">5</span>
+                        <span class="section-badge">4</span>
                         <i class="fas fa-chart-line section-icon"></i>
                         <span class="section-title">Sección IV. {{ config('diagnostico.secciones.IV.label') }}</span>
                     </div>
@@ -383,15 +360,15 @@
                     @endforeach
 
                     <div class="step-nav">
-                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-5"><i class="fas fa-arrow-left"></i> Anterior</button>
-                        <button type="button" class="btn-step btn-next-step" id="btn-next-5" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-4"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn-step btn-next-step" id="btn-next-4" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
-                {{-- ==================== PASO 6. Sección V ==================== --}}
-                <div class="form-step" data-step="6">
+                {{-- ==================== PASO 5. Sección V ==================== --}}
+                <div class="form-step" data-step="5">
                     <div class="section-header">
-                        <span class="section-badge">6</span>
+                        <span class="section-badge">5</span>
                         <i class="fas fa-shield-halved section-icon"></i>
                         <span class="section-title">Sección V. {{ config('diagnostico.secciones.V.label') }}</span>
                     </div>
@@ -401,15 +378,15 @@
                     @endforeach
 
                     <div class="step-nav">
-                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-6"><i class="fas fa-arrow-left"></i> Anterior</button>
-                        <button type="button" class="btn-step btn-next-step" id="btn-next-6" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-5"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn-step btn-next-step" id="btn-next-5" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
-                {{-- ==================== PASO 7. Valoración de barreras (Likert) ==================== --}}
-                <div class="form-step" data-step="7">
+                {{-- ==================== PASO 6. Valoración de barreras (Likert) ==================== --}}
+                <div class="form-step" data-step="6">
                     <div class="section-header">
-                        <span class="section-badge">7</span>
+                        <span class="section-badge">6</span>
                         <i class="fas fa-scale-balanced section-icon"></i>
                         <span class="section-title">Valoración de barreras</span>
                     </div>
@@ -439,15 +416,15 @@
                     @endforeach
 
                     <div class="step-nav">
-                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-7"><i class="fas fa-arrow-left"></i> Anterior</button>
-                        <button type="button" class="btn-step btn-next-step" id="btn-next-7" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-6"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn-step btn-next-step" id="btn-next-6" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
-                {{-- ==================== PASO 8. Sección VII ==================== --}}
-                <div class="form-step" data-step="8">
+                {{-- ==================== PASO 7. Secciones VII + VIII ==================== --}}
+                <div class="form-step" data-step="7">
                     <div class="section-header">
-                        <span class="section-badge">8</span>
+                        <span class="section-badge">7</span>
                         <i class="fas fa-user-shield section-icon"></i>
                         <span class="section-title">Sección VII. {{ config('diagnostico.secciones.VII.label') }}</span>
                     </div>
@@ -456,16 +433,8 @@
                         @include('partials.campo-diagnostico', ['pregunta' => $pregunta])
                     @endforeach
 
-                    <div class="step-nav">
-                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-8"><i class="fas fa-arrow-left"></i> Anterior</button>
-                        <button type="button" class="btn-step btn-next-step" id="btn-next-8" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                {{-- ==================== PASO 9. Sección VIII ==================== --}}
-                <div class="form-step" data-step="9">
                     <div class="section-header">
-                        <span class="section-badge">9</span>
+                        <span class="section-badge">8</span>
                         <i class="fas fa-triangle-exclamation section-icon"></i>
                         <span class="section-title">Sección VIII. {{ config('diagnostico.secciones.VIII.label') }}</span>
                     </div>
@@ -474,16 +443,8 @@
                         @include('partials.campo-diagnostico', ['pregunta' => $pregunta])
                     @endforeach
 
-                    <div class="step-nav">
-                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-9"><i class="fas fa-arrow-left"></i> Anterior</button>
-                        <button type="button" class="btn-step btn-next-step" id="btn-next-9" disabled>Continuar <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-
-                {{-- ==================== PASO 10. Sección IX ==================== --}}
-                <div class="form-step" data-step="10">
                     <div class="section-header">
-                        <span class="section-badge">10</span>
+                        <span class="section-badge">9</span>
                         <i class="fas fa-lightbulb section-icon"></i>
                         <span class="section-title">Sección IX. {{ config('diagnostico.secciones.IX.label') }}</span>
                     </div>
@@ -493,7 +454,7 @@
                     @endforeach
 
                     <div class="step-nav">
-                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-10"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn-step btn-prev-step" id="btn-prev-7"><i class="fas fa-arrow-left"></i> Anterior</button>
                         <button type="submit" class="btn btn-primary btn-submit-step" id="btn-submit">
                             <i class="fas fa-paper-plane"></i> Enviar diagnóstico
                         </button>
@@ -529,9 +490,12 @@
 
             // ----- Wizard: navegación por pasos -----
             let currentStep = 1;
-            const TOTAL_STEPS = 10;
+            const TOTAL_STEPS = 7;
+            const progressText = document.getElementById('steps-progress-text');
+            const progressBarFill = document.getElementById('steps-progress-bar-fill');
 
-            function goToStep(n) {
+            function goToStep(n, opts) {
+                opts = opts || {};
                 const steps = document.querySelectorAll('.form-step');
                 const dots = document.querySelectorAll('.steps-progress .step-item');
                 steps.forEach(s => s.classList.remove('active'));
@@ -543,7 +507,9 @@
                 const target = document.querySelector(`.form-step[data-step="${n}"]`);
                 if (target) target.classList.add('active');
                 currentStep = n;
-                window.scrollTo({ top: formulario.offsetTop - 20, behavior: 'smooth' });
+                if (progressText) progressText.textContent = `Paso ${n} de ${TOTAL_STEPS}`;
+                if (progressBarFill) progressBarFill.style.width = `${Math.round((n / TOTAL_STEPS) * 100)}%`;
+                if (!opts.silent) window.scrollTo({ top: formulario.offsetTop - 20, behavior: 'smooth' });
             }
 
             function shakeBtn(id) {
@@ -675,6 +641,100 @@
             rankingSelects.forEach(s => s.addEventListener('change', syncRanking));
             syncRanking();
 
+            // ----- Auto-avance en preguntas Sí/No: enfoca el siguiente campo sin esperar click -----
+            let isRestoringDraft = false;
+            function autoAdvanceSiNo(radio) {
+                if (isRestoringDraft) return;
+                const question = radio.closest('.row');
+                if (!question) return;
+                let next = question.nextElementSibling;
+                while (next && !next.matches('.row')) next = next.nextElementSibling;
+                if (!next) return;
+                const target = next.querySelector('input:not([disabled]), select:not([disabled]), textarea:not([disabled])');
+                if (target) setTimeout(() => target.focus({ preventScroll: false }), 150);
+            }
+            document.querySelectorAll('input[type="radio"][id$="_si"], input[type="radio"][id$="_no"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    if (radio.checked) autoAdvanceSiNo(radio);
+                });
+            });
+
+            // ----- Borrador local: conserva el avance si se recarga o cierra la pestaña -----
+            const DRAFT_KEY = 'diagnostico_draft_v1';
+
+            function serializeDraft() {
+                const fields = {};
+                formulario.querySelectorAll('input, select, textarea').forEach(function(el) {
+                    if (!el.name || el.type === 'file' || el.type === 'hidden') return;
+                    if (el.type === 'checkbox') {
+                        if (el.name.endsWith('[]')) {
+                            if (!fields[el.name]) fields[el.name] = [];
+                            if (el.checked) fields[el.name].push(el.value);
+                        } else {
+                            fields[el.name] = el.checked;
+                        }
+                    } else if (el.type === 'radio') {
+                        if (el.checked) fields[el.name] = el.value;
+                    } else {
+                        fields[el.name] = el.value;
+                    }
+                });
+                fields['_terminos'] = terminosCheckbox.checked;
+                return fields;
+            }
+
+            function saveDraft() {
+                try {
+                    localStorage.setItem(DRAFT_KEY, JSON.stringify({ fields: serializeDraft(), step: currentStep }));
+                } catch (e) {}
+            }
+
+            function clearDraft() {
+                try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+            }
+
+            function restoreDraft() {
+                let payload;
+                try {
+                    const raw = localStorage.getItem(DRAFT_KEY);
+                    if (!raw) return;
+                    payload = JSON.parse(raw);
+                } catch (e) { return; }
+                if (!payload || !payload.fields) return;
+
+                const fields = payload.fields;
+                if (fields['_terminos']) terminosCheckbox.checked = true;
+
+                Object.keys(fields).forEach(function(name) {
+                    const value = fields[name];
+                    if (name === '_terminos') return;
+                    const els = formulario.querySelectorAll(`[name="${name}"]`);
+                    els.forEach(function(el) {
+                        if (el.type === 'checkbox') {
+                            el.checked = Array.isArray(value) ? value.includes(el.value) : !!value;
+                        } else if (el.type === 'radio') {
+                            el.checked = (el.value === value);
+                        } else {
+                            el.value = value;
+                        }
+                    });
+                });
+
+                // Re-sincroniza UI dependiente (campos "otros", ranking, botones continuar) sin animar scroll.
+                isRestoringDraft = true;
+                formulario.querySelectorAll('input, select, textarea').forEach(function(el) {
+                    el.dispatchEvent(new Event('change'));
+                });
+                isRestoringDraft = false;
+                actualizarVisibilidadFormulario();
+                if (payload.step >= 1 && payload.step <= TOTAL_STEPS) goToStep(payload.step, { silent: true });
+            }
+
+            formulario.addEventListener('input', saveDraft);
+            formulario.addEventListener('change', saveDraft);
+            terminosCheckbox.addEventListener('change', saveDraft);
+            restoreDraft();
+
             const btnSubmit = document.getElementById('btn-submit');
             const lastStepEl = document.querySelector(`.form-step[data-step="${TOTAL_STEPS}"]`);
             btnSubmit.addEventListener('click', function(e) {
@@ -776,6 +836,7 @@
                 });
             @endif
             @if (session('success'))
+                clearDraft();
                 Swal.fire({
                     icon: 'success',
                     title: '¡Formulario enviado con éxito!',
